@@ -23,10 +23,11 @@ export const metadata: Metadata = {
     siteName: "Asociația General Magheru 68",
     images: [
       {
-        url: "/logo_black.png",
-        width: 300,
-        height: 300,
-        alt: "Asociația General Magheru 68 Logo",
+        url: "/asociatia_magheru_68.webp",
+        width: 650,
+        height: 433,
+        alt: "Asociația General Magheru 68",
+        type: "image/webp",
       },
     ],
   },
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Asociația General Magheru 68 - Evenimente și Inițiative Sociale",
     description: "Asociația General Magheru 68 dedicată îmbunătățirii comunității prin evenimente și inițiative sociale.",
-    images: ["/logo_black.png"],
+    images: ["/asociatia_magheru_68.webp"],
   },
 };
 

@@ -1,34 +1,18 @@
 'use client'
 
 import { Gift, Star, Zap, Trophy, Ticket } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function RaffleSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <section 
-      ref={sectionRef}
+    <motion.section 
       id="tombola"
       className="py-20 bg-white relative overflow-hidden"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.4 }}
     >
       {/* Sparkle background effects */}
       <div className="absolute inset-0">
@@ -40,14 +24,22 @@ export default function RaffleSection() {
       
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Central Headline */}
-        <div className={`text-center mb-16 transform transition-all duration-1000 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-        }`}>
-          <div className={`inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full mb-8 transform transition-all duration-700 delay-300 ${
-            isVisible ? 'scale-100 rotate-0' : 'scale-75 rotate-45'
-          }`}>
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ y: 48, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.div 
+            className="inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full mb-8"
+            initial={{ scale: 0.75, rotate: 45 }}
+            whileInView={{ scale: 1, rotate: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+          >
             <Gift className="w-10 h-10 text-primary" />
-          </div>
+          </motion.div>
           
           <p className="text-primary font-semibold text-lg mb-4 tracking-wide uppercase">
             Surprize și Premii
@@ -58,12 +50,16 @@ export default function RaffleSection() {
           </h2>
           
           <div className="w-24 h-1 bg-primary mx-auto rounded-full"></div>
-        </div>
+        </motion.div>
 
         {/* Main Description */}
-        <div className={`max-w-4xl mx-auto text-center mb-16 transform transition-all duration-1000 delay-500 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-        }`}>
+        <motion.div 
+          className="max-w-4xl mx-auto text-center mb-16"
+          initial={{ y: 32, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
           <p className="text-2xl md:text-3xl text-gray-600 leading-relaxed font-light mb-8">
             Tombola balului aduce emoția și bucuria câștigului, oferind participanților șansa de a primi 
             premii valoroase în timp ce contribuie la fondul de premiere a elevilor olimpici.
@@ -81,15 +77,19 @@ export default function RaffleSection() {
               <p className="text-gray-600">Prețuri mici pentru bilete, oferind tuturor șansa de a participa</p>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Prize Categories */}
         <div className="mb-16">
-          <h3 className={`text-2xl md:text-3xl font-bold text-center text-gray-900 mb-12 transform transition-all duration-1000 delay-700 ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-          }`}>
+          <motion.h3 
+            className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-12"
+            initial={{ y: 32, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
             Categorii de Premii
-          </h3>
+          </motion.h3>
           
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-6">
             {[
@@ -126,12 +126,13 @@ export default function RaffleSection() {
                 value: "300-2000 lei"
               }
             ].map((prize, index) => (
-              <div 
+              <motion.div 
                 key={index}
-                className={`group bg-white rounded-2xl shadow-lg hover:shadow-2xl transform transition-all duration-700 hover:-translate-y-3 overflow-hidden ${
-                  isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-                }`}
-                style={{ transitionDelay: `${900 + index * 150}ms` }}
+                className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transform transition-all duration-700 hover:-translate-y-3 overflow-hidden"
+                initial={{ y: 48, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
               >
                 {/* Header */}
                 <div className={`bg-gradient-to-r ${prize.color} p-6 text-white relative`}>
@@ -152,28 +153,33 @@ export default function RaffleSection() {
                 <div className="p-6">
                   <ul className="space-y-2">
                     {prize.prizes.map((item, itemIndex) => (
-                      <li 
+                      <motion.li 
                         key={itemIndex}
-                        className={`flex items-center gap-2 text-sm text-gray-600 transform transition-all duration-300 ${
-                          isVisible ? 'translate-x-0 opacity-100' : 'translate-x-4 opacity-0'
-                        }`}
-                        style={{ transitionDelay: `${1100 + index * 150 + itemIndex * 50}ms` }}
+                        className="flex items-center gap-2 text-sm text-gray-600"
+                        initial={{ x: 16, opacity: 0 }}
+                        whileInView={{ x: 0, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: (index * 0.15) + (itemIndex * 0.05) + 0.3 }}
                       >
                         <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0"></div>
                         <span className="group-hover:text-gray-800 transition-colors">{item}</span>
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* How to Participate */}
-        <div className={`bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 rounded-3xl p-8 md:p-12 mb-16 transform transition-all duration-1000 delay-1300 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-        }`}>
+        <motion.div 
+          className="bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 rounded-3xl p-8 md:p-12 mb-16"
+          initial={{ y: 48, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
           <div className="text-center mb-8">
             <Trophy className="w-12 h-12 text-primary mx-auto mb-4" />
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
@@ -191,12 +197,13 @@ export default function RaffleSection() {
               { step: "3", title: "Așteaptă", description: "Urmărește extragerea live pe scenă", icon: "👀" },
               { step: "4", title: "Câștigă", description: "Ridică premiul dacă ești norocos", icon: "🎉" }
             ].map((step, index) => (
-              <div 
+              <motion.div 
                 key={index}
-                className={`text-center bg-white/60 backdrop-blur-sm rounded-xl p-6 border border-white/40 transform transition-all duration-500 hover:scale-105 ${
-                  isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                }`}
-                style={{ transitionDelay: `${1500 + index * 100}ms` }}
+                className="text-center bg-white/60 backdrop-blur-sm rounded-xl p-6 border border-white/40 transform transition-all duration-500 hover:scale-105"
+                initial={{ y: 32, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 + (index * 0.1) }}
               >
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 text-primary">
                   {typeof step.icon === 'string' ? step.icon : step.icon}
@@ -206,15 +213,19 @@ export default function RaffleSection() {
                 </div>
                 <h4 className="font-semibold text-gray-900 mb-2">{step.title}</h4>
                 <p className="text-sm text-gray-600">{step.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Call to Action */}
-        <div className={`text-center bg-gradient-to-r from-primary to-primary/90 text-white rounded-3xl p-8 md:p-12 transform transition-all duration-1000 delay-1600 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-        }`}>
+        <motion.div 
+          className="text-center bg-gradient-to-r from-primary to-primary/90 text-white rounded-3xl p-8 md:p-12"
+          initial={{ y: 48, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
           <h3 className="text-2xl md:text-3xl font-bold mb-4">
             Participă și Sprijină Cauza
           </h3>
@@ -226,8 +237,8 @@ export default function RaffleSection() {
               <span className="font-medium">Bilete disponibile la eveniment</span>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

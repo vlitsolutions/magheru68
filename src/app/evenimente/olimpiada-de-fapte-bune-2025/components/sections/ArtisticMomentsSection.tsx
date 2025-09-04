@@ -1,7 +1,8 @@
 'use client'
 
 import { Music, X, ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 
@@ -10,21 +11,21 @@ const artists = [
     id: 1,
     name: "Alexandru Ilinca",
     category: "Dirijor și Pianist",
-    image: "/artisti/alexandru_ilinca.png",
+    image: "/artisti/alexandru_ilinca.webp",
     description: "Alexandru Ilinca este un dirijor și pianist de renume internațional, cunoscut pentru interpretările sale rafinate și pentru contribuția sa la promovarea muzicii clasice contemporane. Cu o carieră strălucită ce se întinde pe mai multe decenii, maestrul Ilinca a colaborat cu cele mai prestigioase orchestre din Europa."
   },
   {
     id: 2,
     name: "Bogdan Vladău",
     category: "Violonist",
-    image: "/artisti/bogdan_vladau.png",
+    image: "/artisti/bogdan_vladau.webp",
     description: "Bogdan Vladău este un violonist virtuoz, recunoscut pentru tehnica sa impecabilă și pentru capacitatea de a transmite emoții profunde prin muzică. Absolvent al Conservatorului din București, a câștigat numeroase premii internaționale și susține concerte în întreaga lume."
   },
   {
     id: 3,
     name: "Zina Ghițulescu",
     category: "Cântăreață Lirică",
-    image: "/artisti/zina_ghitulescu.png",
+    image: "/artisti/zina_ghitulescu.webp",
     description: "Zina Ghițulescu este o sopran de excepție, apreciată pentru vocea sa cristalină și pentru interpretările memorabile din repertoriul liric românesc și internațional. Cu o prezență scenică magnetică, ea a cucerit publicul din România și din străinătate."
   }
 ];
@@ -34,7 +35,7 @@ const featuredArtists = [
     id: 1,
     name: "Mihai Mitoșeru",
     role: "Prezentator",
-    image: "/artisti/mihai_mitoseru.png",
+    image: "/artisti/mihai_mitoseru.webp",
     description: "Cu o experiență vastă în televiziune și radio, Mihai Mitoșeru va fi gazda perfectă pentru această seară specială. Cunoscut pentru carisma sa și abilitatea de a conecta cu publicul, el va ghida evenimentul cu eleganță și profesionalism, asigurându-se că fiecare moment al serii va fi memorabil."
   },
   {
@@ -42,14 +43,14 @@ const featuredArtists = [
     name: "Zina Ghițulescu",
     role: "Entertainment",
     subtitle: "& Band",
-    image: "/artisti/zina_ghitulescu.png",
+    image: "/artisti/zina_ghitulescu.webp",
     description: "Zina Ghițulescu, o sopran de renume internațional, va oferi împreună cu banda sa o experiență muzicală extraordinară. Repertoriul va cuprinde o selecție rafinată de piese clasice și contemporane, interpretate cu măestria care a consacrat-o ca una dintre cele mai apreciate artiste ale scenei românești."
   },
   {
     id: 3,
     name: "Bogdan Vladău", 
     role: "Prezentator",
-    image: "/artisti/bogdan_vladau.png",
+    image: "/artisti/bogdan_vladau.webp",
     description: "Bogdan Vladău, violonist virtuoz și personalitate media apreciată, va aduce o notă artistică specială evenimentului nostru. Cu o carieră strălucită în muzica clasică și o prezență scenică captivantă, el va îmbogăți atmosfera serii cu momentele sale artistice și va contribui la prezentarea evenimentului."
   }
 ];
@@ -59,42 +60,40 @@ const specialGuests = [
     id: 1,
     name: "Horia Colibășanu",
     occupation: "Alpinist și Scriitor",
-    image: "/invitati/horia_colibasanu.png",
+    image: "/invitati/horia_colibasanu.webp",
     description: "Cunoscut alpinist român, primul care a cucerit opt dintre cei paisprezece munți de peste 8000 de metri din lume. Autor al mai multor cărți despre aventurile sale montane și speaker motivațional apreciat."
   },
   {
     id: 2,
     name: "Ștefania Uță",
     occupation: "Atletă de Performanță", 
-    image: "/invitati/stefania_uta.png",
+    image: "/invitati/stefania_uta.webp",
     description: "Campioană europeană la 400m garduri U20, una dintre cele mai promițătoare atlete din România. La doar 17 ani, deține recorduri naționale și internaționale, reprezentând viitorul atletismului românesc."
   },
   {
     id: 3,
     name: "Alina Vuc",
     occupation: "Luptătoare Profesionistă",
-    image: "/invitati/alina_vuc.png",
+    image: "/invitati/alina_vuc.webp",
     description: "Dublă medaliată cu argint la Campionatele Mondiale de Lupte și cvadruplu medaliată la Campionatele Europene. Olimpică la Tokyo 2020 și Rio 2016, una dintre cele mai de succes luptătoare din istoria României."
   },
   {
     id: 4,
     name: "Miruna Ionescu",
     occupation: "Actriță și Producătoare",
-    image: "/invitati/miruna_ionescu.png", 
+    image: "/invitati/miruna_ionescu.webp", 
     description: "Actriță talentată cu o carieră de succes în teatru și film, apreciată pentru versatilitatea sa artistică. Producătoare de proiecte culturale inovatoare și susținătoare activă a artelor performative."
   },
   {
     id: 5,
     name: "Kenny Gabriel",
     occupation: "Baschetbalist Profesionist",
-    image: "/invitati/kenny_gabriel.png",
+    image: "/invitati/kenny_gabriel.webp",
     description: "Baschetbalist american cu o carieră internațională vastă, inclusiv în România la CS Vâlcea. Fost jucător la Auburn University și campion în Turcia cu Karşıyaka, cu experiență în multiple țări europene."
   }
 ];
 
 export default function ArtisticMomentsSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(specialGuests.length); // Start at middle set for infinite loop
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -107,22 +106,6 @@ export default function ArtisticMomentsSection() {
   const isProcessing = useRef(false);
 
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   // Handle screen size for responsive carousel
   useEffect(() => {
@@ -287,10 +270,13 @@ export default function ArtisticMomentsSection() {
 
   return (
     <>
-      <section 
-        ref={sectionRef}
+      <motion.section 
         id="momente-artistice"
         className="py-20 bg-gray-50 relative overflow-hidden"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.4 }}
       >
       {/* Animated background elements */}
       <div className="absolute inset-0">
@@ -300,14 +286,22 @@ export default function ArtisticMomentsSection() {
       
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Central Headline */}
-        <div className={`text-center mb-16 transform transition-all duration-1000 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-        }`}>
-          <div className={`inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-8 transform transition-all duration-700 delay-300 ${
-            isVisible ? 'scale-100 rotate-0' : 'scale-75 rotate-45'
-          }`}>
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ y: 48, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.4 }}
+        >
+          <motion.div 
+            className="inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-8"
+            initial={{ scale: 0.75, rotate: 45 }}
+            whileInView={{ scale: 1, rotate: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+          >
             <Music className="w-10 h-10 text-primary" />
-          </div>
+          </motion.div>
           
           <p className="text-primary font-semibold text-lg mb-4 tracking-wide uppercase">
             Cultură și Artă
@@ -318,22 +312,30 @@ export default function ArtisticMomentsSection() {
           </h2>
           
           <div className="w-24 h-1 bg-primary mx-auto rounded-full"></div>
-        </div>
+        </motion.div>
 
         {/* Main Description */}
-        <div className={`max-w-4xl mx-auto text-center mb-16 transform transition-all duration-1000 delay-500 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-        }`}>
+        <motion.div 
+          className="max-w-4xl mx-auto text-center mb-16"
+          initial={{ y: 32, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+        >
           <p className="text-2xl md:text-3xl text-gray-600 leading-relaxed font-light mb-8">
             Seara va fi înfrumusețată de spectacolele unor artiști de renume, care vor crea o atmosferă 
             elegantă și memorabilă pentru toți participanții la bal.
           </p>
-        </div>
+        </motion.div>
 
         {/* Featured Artists Highlight */}
-        <div className={`flex justify-center items-center mb-16 mt-16 transform transition-all duration-1000 delay-700 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-        }`}>
+        <motion.div 
+          className="flex justify-center items-center mb-16 mt-16"
+          initial={{ y: 48, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.4, delay: 0.4 }}
+        >
           <div className="relative flex items-center justify-center w-full max-w-6xl px-2">
             
             {/* Left Card - Mihai Mitoșeru */}
@@ -342,7 +344,7 @@ export default function ArtisticMomentsSection() {
                    style={{ boxShadow: '0 8px 32px rgba(30, 64, 175, 0.4), 0 4px 16px rgba(30, 64, 175, 0.3)' }}>
                 <div className="relative -mt-8">
                   <Image 
-                    src="/artisti/mihai_mitoseru.png" 
+                    src="/artisti/mihai_mitoseru.webp" 
                     alt="Mihai Mitoșeru"
                     width={224}
                     height={168}
@@ -363,7 +365,7 @@ export default function ArtisticMomentsSection() {
                    style={{ boxShadow: '0 12px 40px rgba(30, 64, 175, 0.5), 0 6px 20px rgba(30, 64, 175, 0.4)' }}>
                 <div className="relative -mt-10">
                   <Image 
-                    src="/artisti/zina_ghitulescu.png" 
+                    src="/artisti/zina_ghitulescu.webp" 
                     alt="Zina Ghițulescu"
                     width={256}
                     height={192}
@@ -385,7 +387,7 @@ export default function ArtisticMomentsSection() {
                    style={{ boxShadow: '0 8px 32px rgba(30, 64, 175, 0.4), 0 4px 16px rgba(30, 64, 175, 0.3)' }}>
                 <div className="relative -mt-8">
                   <Image 
-                    src="/artisti/bogdan_vladau.png" 
+                    src="/artisti/bogdan_vladau.webp" 
                     alt="Bogdan Vladău"
                     width={224}
                     height={168}
@@ -401,12 +403,16 @@ export default function ArtisticMomentsSection() {
             </div>
 
           </div>
-        </div>
+        </motion.div>
 
         {/* Special Guests Section */}
-        <div className={`mt-20 transform transition-all duration-1000 delay-1000 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-        }`}>
+        <motion.div 
+          className="mt-20"
+          initial={{ y: 48, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.4, delay: 0.6 }}
+        >
           {/* Section Header */}
           <div className="text-center mb-12">
             <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -503,10 +509,10 @@ export default function ArtisticMomentsSection() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
       </div>
-    </section>
+    </motion.section>
     </>
   );
 }

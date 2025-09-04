@@ -127,7 +127,7 @@ export default function StickyHeader({ sections }: StickyHeaderProps) {
         <div className="hidden md:flex items-center justify-between">
           <Link href="/" className="flex items-center">
             <Image
-              src={isScrolled ? "/logo_black.png" : "/logo_white.png"}
+              src={isScrolled ? "/logo_black.webp" : "/logo_white.webp"}
               alt="Logo Asociația General Magheru 68"
               width={100}
               height={70}
@@ -195,7 +195,7 @@ export default function StickyHeader({ sections }: StickyHeaderProps) {
           <div className="flex justify-start">
             <Link href="/" className="flex items-center">
               <Image
-                src={isScrolled ? "/logo_black.png" : "/logo_white.png"}
+                src={isScrolled ? "/logo_black.webp" : "/logo_white.webp"}
                 alt="Logo Asociația General Magheru 68"
                 width={100}
                 height={70}

@@ -1,11 +1,10 @@
 'use client'
 
 import { DollarSign, Heart, Shield, Copy, Check } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function DonationsSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
   const [copiedIban, setCopiedIban] = useState(false);
   const [copiedSwift, setCopiedSwift] = useState(false);
   const [copiedAccount, setCopiedAccount] = useState(false);
@@ -47,28 +46,15 @@ export default function DonationsSection() {
     }
   };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <section 
-      ref={sectionRef}
+    <motion.section 
       id="donatii"
       className="py-20 bg-white relative overflow-hidden"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.4 }}
     >
       {/* Background patterns */}
       <div className="absolute inset-0 opacity-5">
@@ -80,14 +66,22 @@ export default function DonationsSection() {
       
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Central Headline */}
-        <div className={`text-center mb-16 transform transition-all duration-1000 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-        }`}>
-          <div className={`inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full mb-8 transform transition-all duration-700 delay-300 ${
-            isVisible ? 'scale-100 rotate-0' : 'scale-75 rotate-45'
-          }`}>
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ y: 48, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.4 }}
+        >
+          <motion.div 
+            className="inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full mb-8"
+            initial={{ scale: 0.75, rotate: 45 }}
+            whileInView={{ scale: 1, rotate: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+          >
             <DollarSign className="w-10 h-10 text-primary" />
-          </div>
+          </motion.div>
           
           <p className="text-primary font-semibold text-lg mb-4 tracking-wide uppercase">
             Generozitatea în Acțiune
@@ -98,12 +92,16 @@ export default function DonationsSection() {
           </h2>
           
           <div className="w-24 h-1 bg-primary mx-auto rounded-full"></div>
-        </div>
+        </motion.div>
 
         {/* Impact Message */}
-        <div className={`max-w-4xl mx-auto text-center mb-16 transform transition-all duration-1000 delay-500 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-        }`}>
+        <motion.div 
+          className="max-w-4xl mx-auto text-center mb-16"
+          initial={{ y: 32, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+        >
           <p className="text-2xl md:text-3xl text-gray-600 leading-relaxed font-light mb-8">
             Fiecare donație contribuie direct la premierea elevilor vâlceni care și-au demonstrat 
             excelența la olimpiadele și concursurile școlare naționale.
@@ -114,14 +112,17 @@ export default function DonationsSection() {
               &quot;Investiția în educația tinerilor reprezintă investiția în viitorul comunității noastre.&quot;
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Bank Details and CTA */}
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
           {/* Left Column - Bank Details */}
-          <div className={`transform transition-all duration-1000 delay-700 ${
-            isVisible ? 'translate-x-0 opacity-100' : 'translate-x-[-50px] opacity-0'
-          }`}>
+          <motion.div 
+            initial={{ x: -50, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.4, delay: 0.4 }}
+          >
             <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
               <Heart className="w-6 h-6 text-primary" />
               Detalii Bancare
@@ -223,12 +224,15 @@ export default function DonationsSection() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column - Transparency & Trust */}
-          <div className={`transform transition-all duration-1000 delay-900 ${
-            isVisible ? 'translate-x-0 opacity-100' : 'translate-x-[50px] opacity-0'
-          }`}>
+          <motion.div 
+            initial={{ x: 50, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.4, delay: 0.5 }}
+          >
             <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
               <Shield className="w-6 h-6 text-primary" />
               Transparență și Încredere
@@ -261,25 +265,26 @@ export default function DonationsSection() {
                 "Feedback direct de la beneficiari",
                 "Monitorizare continuă a proiectelor"
               ].map((indicator, index) => (
-                <div 
+                <motion.div 
                   key={index}
-                  className={`flex items-center gap-3 p-4 bg-white rounded-lg border border-gray-100 transform transition-all duration-500 hover:shadow-md ${
-                    isVisible ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
-                  }`}
-                  style={{ transitionDelay: `${1100 + index * 100}ms` }}
+                  className="flex items-center gap-3 p-4 bg-white rounded-lg border border-gray-100 hover:shadow-md"
+                  initial={{ x: 32, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.3, delay: 0.65 + index * 0.08 }}
                 >
                   <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
                     <div className="w-3 h-3 bg-primary rounded-full"></div>
                   </div>
                   <p className="text-gray-700 text-sm">{indicator}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
 
       </div>
 
-    </section>
+    </motion.section>
   );
 }

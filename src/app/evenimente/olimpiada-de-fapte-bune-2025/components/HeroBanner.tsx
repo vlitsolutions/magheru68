@@ -18,12 +18,20 @@ export default function HeroBanner({ sections }: HeroBannerProps) {
     setIsVisible(true);
   }, []);
   return (
-    <section 
-      className="relative h-screen bg-cover bg-center flex items-center justify-center"
-      style={{
-        backgroundImage: "url('/hero-banner-event.jpeg')",
-      }}
-    >
+    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* Background image with priority loading */}
+      <Image
+        src="/hero-banner-event.webp"
+        alt="Olimpiada de Fapte Bune 2025 - Ediția a IV-a"
+        fill
+        priority
+        quality={85}
+        sizes="100vw"
+        className="object-cover object-center"
+        placeholder="blur"
+        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+      />
+      
       {/* Gradient overlay for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80"></div>
       
@@ -33,11 +41,14 @@ export default function HeroBanner({ sections }: HeroBannerProps) {
             isVisible ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-8 opacity-0 scale-95'
           }`}>
             <Image
-              src="/logo_white.png"
+              src="/logo_white.webp"
               alt="Logo Asociația General Magheru 68"
               width={280}
               height={280}
+              priority
+              sizes="280px"
               className="mx-auto mb-12 filter drop-shadow-2xl"
+              style={{ width: '280px', height: 'auto' }}
             />
           </div>
           

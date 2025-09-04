@@ -1,36 +1,21 @@
 'use client'
 
 import { Heart, Utensils } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import MenuDialog from "../MenuDialog";
 
 export default function AboutEventSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section 
-      ref={sectionRef}
+    <motion.section 
       id="despre-eveniment"
       className="py-20 bg-white relative overflow-hidden"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.4 }}
     >
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
@@ -38,14 +23,22 @@ export default function AboutEventSection() {
       
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Central Headline */}
-        <div className={`text-center mb-16 transform transition-all duration-1000 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-        }`}>
-          <div className={`inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-8 transform transition-all duration-700 delay-300 ${
-            isVisible ? 'scale-100 rotate-0' : 'scale-75 rotate-45'
-          }`}>
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ y: 48, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.4 }}
+        >
+          <motion.div 
+            className="inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-8"
+            initial={{ scale: 0.75, rotate: 45 }}
+            whileInView={{ scale: 1, rotate: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+          >
             <Heart className="w-10 h-10 text-primary" />
-          </div>
+          </motion.div>
           
           <p className="text-primary font-semibold text-lg mb-4 tracking-wide uppercase">
             Misiunea Noastră
@@ -56,12 +49,16 @@ export default function AboutEventSection() {
           </h2>
           
           <div className="w-24 h-1 bg-primary mx-auto rounded-full"></div>
-        </div>
+        </motion.div>
 
         {/* Main Description */}
-        <div className={`max-w-4xl mx-auto text-center mb-16 transform transition-all duration-1000 delay-500 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-        }`}>
+        <motion.div 
+          className="max-w-4xl mx-auto text-center mb-16"
+          initial={{ y: 32, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+        >
           <p className="text-2xl md:text-3xl text-gray-600 leading-relaxed font-light mb-8">
             Olimpiada de Fapte Bune este un bal de strângere de fonduri din orașul Râmnicu Vâlcea, 
             dedicat sprijinirii excelenței educaționale din comunitatea vâlceană.
@@ -71,12 +68,16 @@ export default function AboutEventSection() {
             care au obținut rezultate remarcabile la olimpiadele și concursurile școlare organizate sub 
             egida Ministerului Educației și Cercetării în anul școlar 2024-2025.
           </p>
-        </div>
+        </motion.div>
 
         {/* Elegant Desktop Layout */}
-        <div className={`grid lg:grid-cols-5 gap-12 items-stretch transform transition-all duration-1000 delay-800 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-        }`}>
+        <motion.div 
+          className="grid lg:grid-cols-5 gap-12 items-stretch"
+          initial={{ y: 48, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.4, delay: 0.5 }}
+        >
           {/* Stats Section - Mobile only */}
           <div className="lg:hidden order-1">
             <div className="grid grid-cols-2 gap-3 mb-6">
@@ -84,18 +85,20 @@ export default function AboutEventSection() {
                 { number: "400", label: "Elevi premiați în 4 ani", suffix: "+" },
                 { number: "250.000", label: "Donați în 4 ani", suffix: "+ RON" }
               ].map((stat, index) => (
-                <div 
+                <motion.div 
                   key={index}
-                  className={`text-center p-3 bg-white rounded-xl shadow-lg border border-gray-100 transform transition-all duration-700 hover:scale-105 hover:shadow-xl ${
-                    isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-                  }`}
-                  style={{ transitionDelay: `${800 + index * 200}ms` }}
+                  className="text-center p-3 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl"
+                  initial={{ y: 48, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  whileHover={{ scale: 1.05 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.4, delay: 0.5 + index * 0.15 }}
                 >
                   <div className="text-xl font-bold text-primary mb-1">
                     {stat.number}<span className="text-base">{stat.suffix}</span>
                   </div>
                   <p className="text-xs text-gray-600 font-medium">{stat.label}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -108,18 +111,20 @@ export default function AboutEventSection() {
                 { number: "400", label: "Elevi premiați în 4 ani", suffix: "+" },
                 { number: "250.000", label: "Donați în 4 ani", suffix: "+ RON" }
               ].map((stat, index) => (
-                <div 
+                <motion.div 
                   key={index}
-                  className={`text-center p-6 bg-white rounded-xl shadow-lg border border-gray-100 transform transition-all duration-700 hover:scale-105 hover:shadow-xl ${
-                    isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-                  }`}
-                  style={{ transitionDelay: `${800 + index * 200}ms` }}
+                  className="text-center p-6 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl"
+                  initial={{ y: 48, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  whileHover={{ scale: 1.05 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.4, delay: 0.5 + index * 0.15 }}
                 >
                   <div className="text-4xl font-bold text-primary mb-1">
                     {stat.number}<span className="text-2xl">{stat.suffix}</span>
                   </div>
                   <p className="text-sm text-gray-600 font-medium">{stat.label}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
             <div className="lg:flex-1 lg:flex lg:items-center">
@@ -232,12 +237,16 @@ export default function AboutEventSection() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Bonus Inclus - Full Width Row */}
-        <div className={`mt-12 transform transition-all duration-1000 delay-1200 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-        }`}>
+        <motion.div 
+          className="mt-12"
+          initial={{ y: 48, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.4, delay: 0.8 }}
+        >
           <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-4 md:p-6 border border-yellow-200">
             <div className="text-center">
               <h3 className="text-lg md:text-xl font-bold text-orange-900 mb-2 flex items-center justify-center gap-2">
@@ -251,11 +260,11 @@ export default function AboutEventSection() {
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Menu Dialog */}
       <MenuDialog isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
-    </section>
+    </motion.section>
   );
 }

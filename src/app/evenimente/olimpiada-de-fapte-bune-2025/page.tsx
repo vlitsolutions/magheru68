@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: "Asociația General Magheru 68",
     images: [
       {
-        url: "/hero-banner-event.jpeg",
+        url: "/hero-banner-event.webp",
         width: 1200,
         height: 630,
         alt: "Olimpiada de Fapte Bune 2025 - Ediția a IV-a",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Olimpiada de Fapte Bune 2025 - Ediția a IV-a",
     description: "Alătură-te la Olimpiada de Fapte Bune 2025, ediția a IV-a, pe 19 septembrie 2025. Eveniment caritabil cu momente artistice, donații, licitații și tombola.",
-    images: ["/hero-banner-event.jpeg"],
+    images: ["/hero-banner-event.webp"],
   },
 };
 

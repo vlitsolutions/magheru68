@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="text-center md:text-left">
             <div className="flex justify-center md:justify-start mb-6">
               <Image 
-                src="/logo_white.png" 
+                src="/logo_white.webp" 
                 alt="Asociația General Magheru 68" 
                 width={80}
                 height={80}

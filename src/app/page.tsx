@@ -10,7 +10,7 @@ export default function Home() {
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12 max-w-7xl mx-auto">
           <div className="flex flex-col items-center text-center">
             <Image
-              src="/logo_white.png"
+              src="/logo_white.webp"
               alt="Logo"
               width={300}
               height={300}
