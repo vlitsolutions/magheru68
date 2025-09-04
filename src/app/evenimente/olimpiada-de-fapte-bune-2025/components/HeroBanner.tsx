@@ -1,0 +1,65 @@
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+
+interface HeroBannerProps {
+  sections: Array<{
+    id: string;
+    title: string;
+  }>;
+}
+
+export default function HeroBanner({ sections }: HeroBannerProps) {
+  return (
+    <section 
+      className="relative h-screen bg-cover bg-center flex items-center justify-center"
+      style={{
+        backgroundImage: "url('/hero-banner-event.jpeg')",
+      }}
+    >
+      {/* Gradient overlay for better text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80"></div>
+      
+      <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+        <div className="mb-12">
+          <Image
+            src="/logo_white.png"
+            alt="Logo Asociația General Magheru 68"
+            width={280}
+            height={280}
+            className="mx-auto mb-12 filter drop-shadow-2xl"
+          />
+          
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white">
+            Olimpiada de Fapte Bune 2025
+          </h1>
+          
+          <div className="space-y-4 mb-12">
+            <p className="text-2xl md:text-3xl font-light text-white/95">
+              Ediția a IV-a
+            </p>
+            
+            <p className="text-3xl md:text-4xl font-semibold text-primary">
+              19 Septembrie 2025
+            </p>
+          </div>
+
+          <div className="max-w-2xl mx-auto mb-16">
+            <p className="text-lg md:text-xl text-white/90 leading-relaxed">
+              Promovăm valorile, premiem, excelența!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Animated scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 animate-bounce">
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-sm font-medium">Scroll pentru mai multe</span>
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

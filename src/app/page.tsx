@@ -10,7 +10,7 @@ export default function Home() {
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12 max-w-7xl mx-auto">
           <div className="flex flex-col items-center text-center">
             <Image
-              src="/logo-transparent-e1676430439366.png"
+              src="/logo_white.png"
               alt="Logo"
               width={300}
               height={300}
@@ -21,7 +21,7 @@ export default function Home() {
               Asociația General Magheru 68
             </h1>
             <p className="text-white/80 text-lg max-w-md">
-               dedicată îmbunătățirii comunității valcene prin evenimente și inițiative sociale
+               dedicată sprijinirii excelenței educaționale în comunitatea vâlceană
             </p>
           </div>
           
@@ -40,7 +40,10 @@ export default function Home() {
                       Ediția a IV-a
                     </p>
                     <p className="text-lg font-medium text-gray-800">
-                      19 Septembrie 2025
+                      19 Septembrie 2025, ora 18:30
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      Hotel Ramada, Râmnicu Vâlcea
                     </p>
                   </div>
                   <Button asChild className="w-full bg-primary hover:bg-primary/90">
