@@ -2,12 +2,30 @@ import type { Metadata } from "next";
 import StickyHeader from "./components/StickyHeader";
 import HeroBanner from "./components/HeroBanner";
 import EventSections from "./components/EventSections";
+import StickyDonateButton from "./components/StickyDonateButton";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Olimpiada de Fapte Bune 2025 - Ediția a IV-a | Asociația General Magheru 68",
   description: "Alătură-te la Olimpiada de Fapte Bune 2025, ediția a IV-a, pe 19 septembrie 2025. Eveniment caritabil cu momente artistice, donații, licitații și tombola.",
   keywords: ["Olimpiada de Fapte Bune", "2025", "caritate", "septembrie", "donații", "licitații", "tombola", "momente artistice"],
   openGraph: {
+    title: "Olimpiada de Fapte Bune 2025 - Ediția a IV-a",
+    description: "Alătură-te la Olimpiada de Fapte Bune 2025, ediția a IV-a, pe 19 septembrie 2025. Eveniment caritabil cu momente artistice, donații, licitații și tombola.",
+    type: "website",
+    locale: "ro_RO",
+    siteName: "Asociația General Magheru 68",
+    images: [
+      {
+        url: "/hero-banner-event.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Olimpiada de Fapte Bune 2025 - Ediția a IV-a",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
     title: "Olimpiada de Fapte Bune 2025 - Ediția a IV-a",
     description: "Alătură-te la Olimpiada de Fapte Bune 2025, ediția a IV-a, pe 19 septembrie 2025. Eveniment caritabil cu momente artistice, donații, licitații și tombola.",
     images: ["/hero-banner-event.jpeg"],
@@ -24,10 +42,6 @@ const sections = [
     title: "Momente Artistice"
   },
   {
-    id: "donatii",
-    title: "Donații"
-  },
-  {
     id: "licitatii",
     title: "Licitații"
   },
@@ -38,6 +52,10 @@ const sections = [
   {
     id: "sponsori",
     title: "Sponsori și Parteneri"
+  },
+  {
+    id: "donatii",
+    title: "Donații"
   }
 ];
 
@@ -47,6 +65,8 @@ export default function EventPage() {
       <StickyHeader sections={sections} />
       <HeroBanner sections={sections} />
       <EventSections />
+      <StickyDonateButton />
+      <Footer />
     </div>
   );
 }

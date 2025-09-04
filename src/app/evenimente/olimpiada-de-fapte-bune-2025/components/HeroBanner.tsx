@@ -1,5 +1,8 @@
+'use client'
+
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 
 interface HeroBannerProps {
   sections: Array<{
@@ -9,6 +12,11 @@ interface HeroBannerProps {
 }
 
 export default function HeroBanner({ sections }: HeroBannerProps) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
   return (
     <section 
       className="relative h-screen bg-cover bg-center flex items-center justify-center"
@@ -21,19 +29,27 @@ export default function HeroBanner({ sections }: HeroBannerProps) {
       
       <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
         <div className="mb-12">
-          <Image
-            src="/logo_white.png"
-            alt="Logo Asociația General Magheru 68"
-            width={280}
-            height={280}
-            className="mx-auto mb-12 filter drop-shadow-2xl"
-          />
+          <div className={`transform transition-all duration-1000 ${
+            isVisible ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-8 opacity-0 scale-95'
+          }`}>
+            <Image
+              src="/logo_white.png"
+              alt="Logo Asociația General Magheru 68"
+              width={280}
+              height={280}
+              className="mx-auto mb-12 filter drop-shadow-2xl"
+            />
+          </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white">
+          <h1 className={`text-5xl md:text-7xl font-bold mb-6 leading-tight text-white transform transition-all duration-1000 delay-300 ${
+            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+          }`}>
             Olimpiada de Fapte Bune 2025
           </h1>
           
-          <div className="space-y-4 mb-12">
+          <div className={`space-y-4 mb-12 transform transition-all duration-1000 delay-500 ${
+            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+          }`}>
             <p className="text-2xl md:text-3xl font-light text-white/95">
               Ediția a IV-a
             </p>
@@ -43,7 +59,9 @@ export default function HeroBanner({ sections }: HeroBannerProps) {
             </p>
           </div>
 
-          <div className="max-w-2xl mx-auto mb-16">
+          <div className={`max-w-2xl mx-auto mb-16 transform transition-all duration-1000 delay-700 ${
+            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+          }`}>
             <p className="text-lg md:text-xl text-white/90 leading-relaxed">
               Promovăm valorile, premiem, excelența!
             </p>

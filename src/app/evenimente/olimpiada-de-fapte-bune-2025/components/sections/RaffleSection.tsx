@@ -43,13 +43,13 @@ export default function RaffleSection() {
         <div className={`text-center mb-16 transform transition-all duration-1000 ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
         }`}>
-          <div className={`inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-8 transform transition-all duration-700 delay-300 ${
+          <div className={`inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full mb-8 transform transition-all duration-700 delay-300 ${
             isVisible ? 'scale-100 rotate-0' : 'scale-75 rotate-45'
           }`}>
-            <Gift className="w-10 h-10 text-blue-600" />
+            <Gift className="w-10 h-10 text-primary" />
           </div>
           
-          <p className="text-blue-600 font-semibold text-lg mb-4 tracking-wide uppercase">
+          <p className="text-primary font-semibold text-lg mb-4 tracking-wide uppercase">
             Surprize și Premii
           </p>
           
@@ -57,7 +57,7 @@ export default function RaffleSection() {
             Tombola
           </h2>
           
-          <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-primary mx-auto rounded-full"></div>
         </div>
 
         {/* Main Description */}
@@ -70,13 +70,13 @@ export default function RaffleSection() {
           </p>
           
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100/30 rounded-2xl p-6 border border-blue-100">
-              <Star className="w-8 h-8 text-blue-500 mx-auto mb-4" />
+            <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 border border-primary/20">
+              <Star className="w-8 h-8 text-primary mx-auto mb-4" />
               <h3 className="font-semibold text-gray-900 mb-2">Premii Garantate</h3>
               <p className="text-gray-600">Toți participanții au șanse reale de câștig cu premii în valoare de mii de lei</p>
             </div>
-            <div className="bg-gradient-to-br from-blue-100/30 to-blue-50 rounded-2xl p-6 border border-blue-100">
-              <Zap className="w-8 h-8 text-blue-500 mx-auto mb-4" />
+            <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl p-6 border border-primary/20">
+              <Zap className="w-8 h-8 text-primary mx-auto mb-4" />
               <h3 className="font-semibold text-gray-900 mb-2">Acces Accesibil</h3>
               <p className="text-gray-600">Prețuri mici pentru bilete, oferind tuturor șansa de a participa</p>
             </div>
@@ -97,7 +97,7 @@ export default function RaffleSection() {
                 category: "Electronice",
                 description: "Gadgeturi și aparatură electronică",
                 icon: "📱",
-                color: "from-blue-400 to-blue-500",
+                color: "from-primary to-primary/90",
                 prizes: ["Smartphone-uri", "Tablete", "Căști wireless", "Smart watch-uri"],
                 value: "500-3000 lei"
               },
@@ -105,7 +105,7 @@ export default function RaffleSection() {
                 category: "Electrocasnice",
                 description: "Aparate pentru casă și bucătărie",
                 icon: "🏠",
-                color: "from-blue-500 to-blue-600",
+                color: "from-primary/90 to-primary/80",
                 prizes: ["Aspiratoare robot", "Cafetiere", "Blendere", "Friteuze cu aer"],
                 value: "200-1500 lei"
               },
@@ -113,7 +113,7 @@ export default function RaffleSection() {
                 category: "Experiențe",
                 description: "Vouchere și experiențe memorabile",
                 icon: "🎁",
-                color: "from-blue-600 to-blue-700",
+                color: "from-primary/80 to-primary/70",
                 prizes: ["Vouchere SPA", "Cine city", "Restaurante", "Activități outdoor"],
                 value: "100-800 lei"
               },
@@ -121,7 +121,7 @@ export default function RaffleSection() {
                 category: "Premii Speciale",
                 description: "Premii unice și de colecție",
                 icon: "⭐",
-                color: "from-blue-300 to-blue-400",
+                color: "from-primary/110 to-primary",
                 prizes: ["Bijuterii", "Opere de artă", "Obiecte vintage", "Produse handmade"],
                 value: "300-2000 lei"
               }
@@ -159,7 +159,7 @@ export default function RaffleSection() {
                         }`}
                         style={{ transitionDelay: `${1100 + index * 150 + itemIndex * 50}ms` }}
                       >
-                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full flex-shrink-0"></div>
+                        <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0"></div>
                         <span className="group-hover:text-gray-800 transition-colors">{item}</span>
                       </li>
                     ))}
@@ -171,11 +171,11 @@ export default function RaffleSection() {
         </div>
 
         {/* How to Participate */}
-        <div className={`bg-gradient-to-br from-blue-50 via-blue-100/30 to-blue-50 rounded-3xl p-8 md:p-12 mb-16 transform transition-all duration-1000 delay-1300 ${
+        <div className={`bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 rounded-3xl p-8 md:p-12 mb-16 transform transition-all duration-1000 delay-1300 ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
         }`}>
           <div className="text-center mb-8">
-            <Trophy className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+            <Trophy className="w-12 h-12 text-primary mx-auto mb-4" />
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
               Cum Participi la Tombolă
             </h3>
@@ -198,10 +198,10 @@ export default function RaffleSection() {
                 }`}
                 style={{ transitionDelay: `${1500 + index * 100}ms` }}
               >
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 text-primary">
                   {typeof step.icon === 'string' ? step.icon : step.icon}
                 </div>
-                <div className="text-xs font-bold text-blue-600 mb-2 bg-blue-100 rounded-full w-6 h-6 flex items-center justify-center mx-auto">
+                <div className="text-xs font-bold text-primary mb-2 bg-primary/10 rounded-full w-6 h-6 flex items-center justify-center mx-auto">
                   {step.step}
                 </div>
                 <h4 className="font-semibold text-gray-900 mb-2">{step.title}</h4>
@@ -212,7 +212,7 @@ export default function RaffleSection() {
         </div>
 
         {/* Call to Action */}
-        <div className={`text-center bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-3xl p-8 md:p-12 transform transition-all duration-1000 delay-1600 ${
+        <div className={`text-center bg-gradient-to-r from-primary to-primary/90 text-white rounded-3xl p-8 md:p-12 transform transition-all duration-1000 delay-1600 ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
         }`}>
           <h3 className="text-2xl md:text-3xl font-bold mb-4">

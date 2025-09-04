@@ -1,11 +1,111 @@
 'use client'
 
-import { Music } from "lucide-react";
+import { Music, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+
+
+const artists = [
+  {
+    id: 1,
+    name: "Alexandru Ilinca",
+    category: "Dirijor și Pianist",
+    image: "/artisti/alexandru_ilinca.png",
+    description: "Alexandru Ilinca este un dirijor și pianist de renume internațional, cunoscut pentru interpretările sale rafinate și pentru contribuția sa la promovarea muzicii clasice contemporane. Cu o carieră strălucită ce se întinde pe mai multe decenii, maestrul Ilinca a colaborat cu cele mai prestigioase orchestre din Europa."
+  },
+  {
+    id: 2,
+    name: "Bogdan Vladău",
+    category: "Violonist",
+    image: "/artisti/bogdan_vladau.png",
+    description: "Bogdan Vladău este un violonist virtuoz, recunoscut pentru tehnica sa impecabilă și pentru capacitatea de a transmite emoții profunde prin muzică. Absolvent al Conservatorului din București, a câștigat numeroase premii internaționale și susține concerte în întreaga lume."
+  },
+  {
+    id: 3,
+    name: "Zina Ghițulescu",
+    category: "Cântăreață Lirică",
+    image: "/artisti/zina_ghitulescu.png",
+    description: "Zina Ghițulescu este o sopran de excepție, apreciată pentru vocea sa cristalină și pentru interpretările memorabile din repertoriul liric românesc și internațional. Cu o prezență scenică magnetică, ea a cucerit publicul din România și din străinătate."
+  }
+];
+
+const featuredArtists = [
+  {
+    id: 1,
+    name: "Mihai Mitoșeru",
+    role: "Prezentator",
+    image: "/artisti/mihai_mitoseru.png",
+    description: "Cu o experiență vastă în televiziune și radio, Mihai Mitoșeru va fi gazda perfectă pentru această seară specială. Cunoscut pentru carisma sa și abilitatea de a conecta cu publicul, el va ghida evenimentul cu eleganță și profesionalism, asigurându-se că fiecare moment al serii va fi memorabil."
+  },
+  {
+    id: 2, 
+    name: "Zina Ghițulescu",
+    role: "Entertainment",
+    subtitle: "& Band",
+    image: "/artisti/zina_ghitulescu.png",
+    description: "Zina Ghițulescu, o sopran de renume internațional, va oferi împreună cu banda sa o experiență muzicală extraordinară. Repertoriul va cuprinde o selecție rafinată de piese clasice și contemporane, interpretate cu măestria care a consacrat-o ca una dintre cele mai apreciate artiste ale scenei românești."
+  },
+  {
+    id: 3,
+    name: "Bogdan Vladău", 
+    role: "Prezentator",
+    image: "/artisti/bogdan_vladau.png",
+    description: "Bogdan Vladău, violonist virtuoz și personalitate media apreciată, va aduce o notă artistică specială evenimentului nostru. Cu o carieră strălucită în muzica clasică și o prezență scenică captivantă, el va îmbogăți atmosfera serii cu momentele sale artistice și va contribui la prezentarea evenimentului."
+  }
+];
+
+const specialGuests = [
+  {
+    id: 1,
+    name: "Horia Colibășanu",
+    occupation: "Alpinist și Scriitor",
+    image: "/invitati/horia_colibasanu.png",
+    description: "Cunoscut alpinist român, primul care a cucerit opt dintre cei paisprezece munți de peste 8000 de metri din lume. Autor al mai multor cărți despre aventurile sale montane și speaker motivațional apreciat."
+  },
+  {
+    id: 2,
+    name: "Ștefania Uță",
+    occupation: "Atletă de Performanță", 
+    image: "/invitati/stefania_uta.png",
+    description: "Campioană europeană la 400m garduri U20, una dintre cele mai promițătoare atlete din România. La doar 17 ani, deține recorduri naționale și internaționale, reprezentând viitorul atletismului românesc."
+  },
+  {
+    id: 3,
+    name: "Alina Vuc",
+    occupation: "Luptătoare Profesionistă",
+    image: "/invitati/alina_vuc.png",
+    description: "Dublă medaliată cu argint la Campionatele Mondiale de Lupte și cvadruplu medaliată la Campionatele Europene. Olimpică la Tokyo 2020 și Rio 2016, una dintre cele mai de succes luptătoare din istoria României."
+  },
+  {
+    id: 4,
+    name: "Miruna Ionescu",
+    occupation: "Actriță și Producătoare",
+    image: "/invitati/miruna_ionescu.png", 
+    description: "Actriță talentată cu o carieră de succes în teatru și film, apreciată pentru versatilitatea sa artistică. Producătoare de proiecte culturale inovatoare și susținătoare activă a artelor performative."
+  },
+  {
+    id: 5,
+    name: "Kenny Gabriel",
+    occupation: "Baschetbalist Profesionist",
+    image: "/invitati/kenny_gabriel.png",
+    description: "Baschetbalist american cu o carieră internațională vastă, inclusiv în România la CS Vâlcea. Fost jucător la Auburn University și campion în Turcia cu Karşıyaka, cu experiență în multiple țări europene."
+  }
+];
 
 export default function ArtisticMomentsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(specialGuests.length); // Start at middle set for infinite loop
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [screenSize, setScreenSize] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const animationQueue = useRef<(() => void)[]>([]);
+  const isProcessing = useRef(false);
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -24,12 +124,174 @@ export default function ArtisticMomentsSection() {
     return () => observer.disconnect();
   }, []);
 
+  // Handle screen size for responsive carousel
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setScreenSize('mobile');
+      } else if (window.innerWidth < 1024) {
+        setScreenSize('tablet');
+      } else {
+        setScreenSize('desktop');
+      }
+    };
+
+    handleResize(); // Set initial size
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Process animation queue
+  const processQueue = () => {
+    if (isProcessing.current || animationQueue.current.length === 0) return;
+    
+    isProcessing.current = true;
+    const nextAction = animationQueue.current.shift();
+    if (nextAction) {
+      nextAction();
+      setTimeout(() => {
+        isProcessing.current = false;
+        processQueue();
+      }, 550); // Slightly longer than animation duration
+    }
+  };
+
+  // Handle infinite loop - reset position after animation completes
+  useEffect(() => {
+    if (currentIndex <= specialGuests.length - 1) {
+      // We've scrolled too far left, instantly reset to the middle copy
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(currentIndex + specialGuests.length);
+        setTimeout(() => {
+          setIsTransitioning(true);
+          setIsAnimating(false);
+        }, 50);
+      }, 500);
+    } else if (currentIndex >= specialGuests.length * 2) {
+      // We've scrolled too far right, instantly reset to the middle copy
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(currentIndex - specialGuests.length);
+        setTimeout(() => {
+          setIsTransitioning(true);
+          setIsAnimating(false);
+        }, 50);
+      }, 500);
+    } else {
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, 500);
+    }
+  }, [currentIndex]);
+
+  const handlePrevious = () => {
+    if (isAnimating) {
+      // Add to queue if already animating
+      animationQueue.current.push(() => {
+        setIsAnimating(true);
+        setCurrentIndex((prevIndex) => prevIndex - 1);
+      });
+      processQueue();
+    } else {
+      setIsAnimating(true);
+      setCurrentIndex((prevIndex) => prevIndex - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (isAnimating) {
+      // Add to queue if already animating
+      animationQueue.current.push(() => {
+        setIsAnimating(true);
+        setCurrentIndex((prevIndex) => prevIndex + 1);
+      });
+      processQueue();
+    } else {
+      setIsAnimating(true);
+      setCurrentIndex((prevIndex) => prevIndex + 1);
+    }
+  };
+
+  // Handle touch/swipe gestures
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsDragging(true);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (isDragging) {
+      setTouchEnd(e.targetTouches[0].clientX);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe && !isAnimating) {
+      handleNext();
+    }
+    if (isRightSwipe && !isAnimating) {
+      handlePrevious();
+    }
+    setTouchStart(0);
+    setTouchEnd(0);
+  };
+
+  // Handle mouse drag for desktop
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    setTouchStart(e.clientX);
+    e.preventDefault(); // Prevent text selection
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (isDragging) {
+      setTouchEnd(e.clientX);
+      e.preventDefault();
+    }
+  };
+
+  const handleMouseUp = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe && !isAnimating) {
+      handleNext();
+    }
+    if (isRightSwipe && !isAnimating) {
+      handlePrevious();
+    }
+    setTouchStart(0);
+    setTouchEnd(0);
+  };
+
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      setIsDragging(false);
+      setTouchStart(0);
+      setTouchEnd(0);
+    }
+  };
+
+
+
+
   return (
-    <section 
-      ref={sectionRef}
-      id="momente-artistice"
-      className="py-20 bg-gray-50 relative overflow-hidden"
-    >
+    <>
+      <section 
+        ref={sectionRef}
+        id="momente-artistice"
+        className="py-20 bg-gray-50 relative overflow-hidden"
+      >
       {/* Animated background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
@@ -44,10 +306,10 @@ export default function ArtisticMomentsSection() {
           <div className={`inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-8 transform transition-all duration-700 delay-300 ${
             isVisible ? 'scale-100 rotate-0' : 'scale-75 rotate-45'
           }`}>
-            <Music className="w-10 h-10 text-blue-600" />
+            <Music className="w-10 h-10 text-primary" />
           </div>
           
-          <p className="text-blue-600 font-semibold text-lg mb-4 tracking-wide uppercase">
+          <p className="text-primary font-semibold text-lg mb-4 tracking-wide uppercase">
             Cultură și Artă
           </p>
           
@@ -55,7 +317,7 @@ export default function ArtisticMomentsSection() {
             Momente Artistice
           </h2>
           
-          <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-primary mx-auto rounded-full"></div>
         </div>
 
         {/* Main Description */}
@@ -68,98 +330,183 @@ export default function ArtisticMomentsSection() {
           </p>
         </div>
 
-        {/* Performance Types Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-16">
-          {[
-            {
-              title: "Muzică Live",
-              description: "Artiști locali și naționali",
-              icon: "🎵",
-              color: "from-blue-400 to-blue-500"
-            },
-            {
-              title: "Dans & Coregrafii",
-              description: "Spectacole de dans contemporan",
-              icon: "💃",
-              color: "from-blue-500 to-blue-600"
-            },
-            {
-              title: "Teatru Social",
-              description: "Prezentări cu tematică socială",
-              icon: "🎭",
-              color: "from-blue-600 to-blue-700"
-            },
-            {
-              title: "Artă & Meșteșuguri",
-              description: "Expoziții tradiționale",
-              icon: "🎨",
-              color: "from-blue-300 to-blue-400"
-            }
-          ].map((performance, index) => (
-            <div 
-              key={index}
-              className={`group relative bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-2xl transform transition-all duration-700 hover:-translate-y-2 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-              }`}
-              style={{ transitionDelay: `${800 + index * 150}ms` }}
-            >
-              <div className={`absolute inset-0 bg-gradient-to-r ${performance.color} rounded-xl md:rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
-              
-              <div className="relative z-10 text-center">
-                <div className="text-2xl md:text-4xl mb-2 md:mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                  {performance.icon}
-                </div>
-                <h3 className="text-base md:text-xl font-semibold text-gray-900 mb-1 md:mb-2">
-                  {performance.title}
-                </h3>
-                <p className="text-sm md:text-base text-gray-600">
-                  {performance.description}
-                </p>
-              </div>
-              
-              {/* Animated border */}
-              <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-blue-300 transition-colors duration-300"></div>
-            </div>
-          ))}
-        </div>
-
-        {/* Featured Artists Section */}
-        <div className={`bg-white rounded-3xl p-8 md:p-12 shadow-xl transform transition-all duration-1000 delay-1000 ${
+        {/* Featured Artists Highlight */}
+        <div className={`flex justify-center items-center mb-16 mt-16 transform transition-all duration-1000 delay-700 ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
         }`}>
-          <div className="text-center mb-8">
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-              Invitați Speciali
-            </h3>
-            <p className="text-lg text-gray-600">
-              Artiști de renume care vor încânta publicul cu spectacole de excepție
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-6">
-            {[
-              "Ștefania Uță",
-              "Alina Vuc", 
-              "Miruna Ionescu",
-              "Bogdan Vlădău",
-              "Kenny Gabriel"
-            ].map((artist, index) => (
-              <div 
-                key={index}
-                className={`text-center p-6 bg-gradient-to-b from-blue-50 to-transparent rounded-xl transform transition-all duration-500 hover:scale-105 ${
-                  isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                }`}
-                style={{ transitionDelay: `${1200 + index * 100}ms` }}
-              >
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Music className="w-8 h-8 text-blue-600" />
+          <div className="relative flex items-center justify-center w-full max-w-6xl px-2">
+            
+            {/* Left Card - Mihai Mitoșeru */}
+            <div className="relative z-10">
+              <div className="w-32 md:w-56 bg-gradient-to-br from-blue-700 to-blue-800 rounded-xl md:rounded-2xl shadow-lg border border-blue-600 relative flex flex-col" 
+                   style={{ boxShadow: '0 8px 32px rgba(30, 64, 175, 0.4), 0 4px 16px rgba(30, 64, 175, 0.3)' }}>
+                <div className="relative -mt-8">
+                  <Image 
+                    src="/artisti/mihai_mitoseru.png" 
+                    alt="Mihai Mitoșeru"
+                    width={224}
+                    height={168}
+                    className="w-full h-28 md:h-42 object-cover object-top rounded-lg pointer-events-none"
+                    draggable={false}
+                  />
                 </div>
-                <p className="font-medium text-gray-900">{artist}</p>
+                <div className="text-center p-2 flex-1 flex flex-col justify-center">
+                  <h3 className="text-xs md:text-lg font-bold text-white mb-1">Mihai Mitoșeru</h3>
+                  <p className="text-yellow-300 font-medium text-xs md:text-sm">Prezentator</p>
+                </div>
               </div>
-            ))}
+            </div>
+
+            {/* Center Card - Zina Ghițulescu (Bigger) */}
+            <div className="relative z-20 -mx-3 md:-mx-6">
+              <div className="w-36 md:w-64 bg-gradient-to-br from-blue-800 to-blue-900 rounded-xl md:rounded-2xl shadow-lg border border-blue-700 relative flex flex-col"
+                   style={{ boxShadow: '0 12px 40px rgba(30, 64, 175, 0.5), 0 6px 20px rgba(30, 64, 175, 0.4)' }}>
+                <div className="relative -mt-10">
+                  <Image 
+                    src="/artisti/zina_ghitulescu.png" 
+                    alt="Zina Ghițulescu"
+                    width={256}
+                    height={192}
+                    className="w-full h-32 md:h-48 object-cover object-top rounded-lg pointer-events-none"
+                    draggable={false}
+                  />
+                </div>
+                <div className="text-center p-2 flex-1 flex flex-col justify-center">
+                  <h3 className="text-sm md:text-xl font-bold text-white mb-1">Zina Ghițulescu</h3>
+                  <h4 className="text-xs md:text-lg font-bold text-white mb-1">& Band</h4>
+                  <p className="text-yellow-300 font-medium text-xs md:text-base">Entertainment</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Card - Bogdan Vladău */}
+            <div className="relative z-10">
+              <div className="w-32 md:w-56 bg-gradient-to-br from-blue-700 to-blue-800 rounded-xl md:rounded-2xl shadow-lg border border-blue-600 relative flex flex-col"
+                   style={{ boxShadow: '0 8px 32px rgba(30, 64, 175, 0.4), 0 4px 16px rgba(30, 64, 175, 0.3)' }}>
+                <div className="relative -mt-8">
+                  <Image 
+                    src="/artisti/bogdan_vladau.png" 
+                    alt="Bogdan Vladău"
+                    width={224}
+                    height={168}
+                    className="w-full h-28 md:h-42 object-cover object-top rounded-lg pointer-events-none"
+                    draggable={false}
+                  />
+                </div>
+                <div className="text-center p-2 flex-1 flex flex-col justify-center">
+                  <h3 className="text-xs md:text-lg font-bold text-white mb-1">Bogdan Vladău</h3>
+                  <p className="text-yellow-300 font-medium text-xs md:text-sm">Prezentator</p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
+
+        {/* Special Guests Section */}
+        <div className={`mt-20 transform transition-all duration-1000 delay-1000 ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+        }`}>
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Invitați Speciali
+            </h3>
+            <div className="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+          </div>
+
+          {/* Swipable Container */}
+          <div className="relative py-8 md:py-12">
+            {/* Cards Container */}
+            <div 
+              className="relative overflow-hidden select-none"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseLeave}
+              style={{ 
+                WebkitUserSelect: 'none',
+                userSelect: 'none',
+                cursor: isDragging ? 'grabbing' : 'grab'
+              }}
+            >
+              {/* Mobile Navigation Buttons - Overlapping */}
+              <button
+                onClick={handlePrevious}
+                className="md:hidden absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-sm text-primary rounded-full flex items-center justify-center shadow-lg hover:bg-white transition-all z-20"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={handleNext}
+                className="md:hidden absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-sm text-primary rounded-full flex items-center justify-center shadow-lg hover:bg-white transition-all z-20"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+
+              {/* Desktop/Tablet Navigation Buttons */}
+              <button
+                onClick={handlePrevious}
+                className="hidden md:flex absolute left-8 lg:left-12 top-1/2 -translate-y-1/2 w-12 h-12 bg-primary text-white rounded-full items-center justify-center shadow-lg hover:bg-primary/90 transition-colors z-20"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={handleNext}
+                className="hidden md:flex absolute right-8 lg:right-12 top-1/2 -translate-y-1/2 w-12 h-12 bg-primary text-white rounded-full items-center justify-center shadow-lg hover:bg-primary/90 transition-colors z-20"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+
+              <div className="relative pt-14 pb-6"> {/* Space for popping images */}
+                <div 
+                  ref={scrollRef}
+                  className={`flex ${isTransitioning ? 'transition-transform duration-500 ease-out' : ''}`}
+                  style={{
+                    transform: `translateX(-${currentIndex * (
+                      screenSize === 'mobile' ? 100 : 
+                      screenSize === 'tablet' ? 50 : 
+                      33.333
+                    )}%)`,
+                  }}
+                >
+                  {/* All cards in a continuous row for smooth animation */}
+                  {[...specialGuests, ...specialGuests, ...specialGuests].map((guest, index) => (
+                    <div 
+                      key={`${guest.id}-${index}`}
+                      className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4 md:px-6 lg:px-8"
+                    >
+                      <div className="bg-white rounded-xl md:rounded-2xl shadow-lg border border-gray-200 relative flex flex-col mx-auto max-w-sm md:max-w-md lg:max-w-sm"
+                           style={{ boxShadow: '0 8px 32px rgba(30, 64, 175, 0.3), 0 4px 16px rgba(30, 64, 175, 0.2)' }}>
+                        <Image 
+                          src={guest.image} 
+                          alt={guest.name}
+                          width={400}
+                          height={200}
+                          className="absolute -top-12 left-1/2 transform -translate-x-1/2 w-full h-40 md:h-48 lg:h-52 object-cover object-top rounded-lg pointer-events-none"
+                          draggable={false}
+                        />
+                        <div className="pt-32 md:pt-40 lg:pt-44 p-5 md:p-6 pb-8 text-center">
+                          <div className="mb-6">
+                            <h4 className="text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-3">{guest.name}</h4>
+                            <p className="text-blue-700 font-medium text-base md:text-lg mb-4">{guest.occupation}</p>
+                          </div>
+                          <p className="text-gray-600 text-sm md:text-base leading-relaxed">{guest.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
+    </>
   );
 }

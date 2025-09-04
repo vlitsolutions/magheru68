@@ -70,7 +70,7 @@ export default function MenuDialog({ isOpen, onClose }: MenuDialogProps) {
       {/* Dialog */}
       <div className="relative bg-white rounded-3xl shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 relative">
+        <div className="bg-gradient-to-r from-primary to-primary/90 text-white p-6 relative">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full -translate-y-16 translate-x-16"></div>
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full translate-y-12 -translate-x-12"></div>
@@ -78,7 +78,7 @@ export default function MenuDialog({ isOpen, onClose }: MenuDialogProps) {
           <div className="relative z-10 flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-bold mb-2">Meniu Complet</h2>
-              <p className="text-blue-100">Olimpiada de Fapte Bune 2025</p>
+              <p className="text-primary-foreground/80">Olimpiada de Fapte Bune 2025</p>
             </div>
             <Button
               variant="ghost"
@@ -97,8 +97,8 @@ export default function MenuDialog({ isOpen, onClose }: MenuDialogProps) {
             onClick={() => setActiveTab('food')}
             className={`flex-1 py-4 px-6 font-medium transition-all ${
               activeTab === 'food'
-                ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
-                : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                ? 'text-primary border-b-2 border-primary bg-primary/5'
+                : 'text-gray-600 hover:text-primary hover:bg-gray-50'
             }`}
           >
             <Utensils className="w-5 h-5 inline mr-2" />
@@ -108,8 +108,8 @@ export default function MenuDialog({ isOpen, onClose }: MenuDialogProps) {
             onClick={() => setActiveTab('drinks')}
             className={`flex-1 py-4 px-6 font-medium transition-all ${
               activeTab === 'drinks'
-                ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
-                : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                ? 'text-primary border-b-2 border-primary bg-primary/5'
+                : 'text-gray-600 hover:text-primary hover:bg-gray-50'
             }`}
           >
             <Wine className="w-5 h-5 inline mr-2" />
@@ -129,7 +129,7 @@ export default function MenuDialog({ isOpen, onClose }: MenuDialogProps) {
                 <div className="grid md:grid-cols-2 gap-3">
                   {foodMenu.aperitive.map((item, index) => (
                     <div key={index} className="flex items-start gap-2 text-gray-700">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                       <span>{item}</span>
                     </div>
                   ))}
@@ -144,7 +144,7 @@ export default function MenuDialog({ isOpen, onClose }: MenuDialogProps) {
                 <div className="grid md:grid-cols-2 gap-3">
                   {foodMenu.felulPrincipal.map((item, index) => (
                     <div key={index} className="flex items-start gap-2 text-gray-700">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                       <span>{item}</span>
                     </div>
                   ))}
@@ -159,7 +159,7 @@ export default function MenuDialog({ isOpen, onClose }: MenuDialogProps) {
                 <div className="grid md:grid-cols-2 gap-3">
                   {foodMenu.deserturi.map((item, index) => (
                     <div key={index} className="flex items-start gap-2 text-gray-700">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                       <span>{item}</span>
                     </div>
                   ))}
@@ -176,7 +176,7 @@ export default function MenuDialog({ isOpen, onClose }: MenuDialogProps) {
                 <div className="grid md:grid-cols-2 gap-3">
                   {drinksMenu.aperitive.map((item, index) => (
                     <div key={index} className="flex items-start gap-2 text-gray-700">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                       <span>{item}</span>
                     </div>
                   ))}
@@ -191,7 +191,7 @@ export default function MenuDialog({ isOpen, onClose }: MenuDialogProps) {
                 <div className="grid md:grid-cols-2 gap-3">
                   {drinksMenu.vinuri.map((item, index) => (
                     <div key={index} className="flex items-start gap-2 text-gray-700">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                       <span>{item}</span>
                     </div>
                   ))}
@@ -206,7 +206,7 @@ export default function MenuDialog({ isOpen, onClose }: MenuDialogProps) {
                 <div className="grid md:grid-cols-2 gap-3">
                   {drinksMenu.nealcoolice.map((item, index) => (
                     <div key={index} className="flex items-start gap-2 text-gray-700">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                       <span>{item}</span>
                     </div>
                   ))}

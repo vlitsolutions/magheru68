@@ -9,6 +9,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://magheru68.ro'),
   title: "Asociația General Magheru 68 - Evenimente și Inițiative Sociale",
   description: "Asociația General Magheru 68 dedicată îmbunătățirii comunității prin evenimente și inițiative sociale. Alătură-te evenimentelor noastre și contribuie la o cauză nobilă.",
   keywords: ["caritate", "evenimente", "olimpiada de fapte bune", "donații", "voluntariat", "comunitate", "România", "Asociația General Magheru 68"],
@@ -20,11 +21,20 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ro_RO",
     siteName: "Asociația General Magheru 68",
+    images: [
+      {
+        url: "/logo_black.png",
+        width: 300,
+        height: 300,
+        alt: "Asociația General Magheru 68 Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Asociația General Magheru 68 - Evenimente și Inițiative Sociale",
     description: "Asociația General Magheru 68 dedicată îmbunătățirii comunității prin evenimente și inițiative sociale.",
+    images: ["/logo_black.png"],
   },
 };
 

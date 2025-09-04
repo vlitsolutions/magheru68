@@ -10,10 +10,10 @@ export default function EventSections() {
     <div>
       <AboutEventSection />
       <ArtisticMomentsSection />
-      <DonationsSection />
       <AuctionsSection />
       <RaffleSection />
       <SponsorsSection />
+      <DonationsSection />
     </div>
   );
 }

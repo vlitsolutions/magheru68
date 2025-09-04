@@ -44,10 +44,10 @@ export default function AboutEventSection() {
           <div className={`inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-8 transform transition-all duration-700 delay-300 ${
             isVisible ? 'scale-100 rotate-0' : 'scale-75 rotate-45'
           }`}>
-            <Heart className="w-10 h-10 text-blue-600" />
+            <Heart className="w-10 h-10 text-primary" />
           </div>
           
-          <p className="text-blue-600 font-semibold text-lg mb-4 tracking-wide uppercase">
+          <p className="text-primary font-semibold text-lg mb-4 tracking-wide uppercase">
             Misiunea Noastră
           </p>
           
@@ -55,7 +55,7 @@ export default function AboutEventSection() {
             Despre Eveniment
           </h2>
           
-          <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-primary mx-auto rounded-full"></div>
         </div>
 
         {/* Main Description */}
@@ -73,33 +73,55 @@ export default function AboutEventSection() {
           </p>
         </div>
 
-        {/* Stats Section */}
-        <div className="grid grid-cols-2 gap-3 md:gap-8 mb-16">
-          {[
-            { number: "400", label: "Elevi premiați în 4 ani", suffix: "+" },
-            { number: "250.000", label: "Donați în 4 ani", suffix: "+ RON" }
-          ].map((stat, index) => (
-            <div 
-              key={index}
-              className={`text-center p-4 md:p-8 bg-white rounded-xl md:rounded-2xl shadow-lg border border-gray-100 transform transition-all duration-700 hover:scale-105 hover:shadow-xl ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-              }`}
-              style={{ transitionDelay: `${800 + index * 200}ms` }}
-            >
-              <div className="text-2xl md:text-5xl font-bold text-blue-600 mb-1 md:mb-2">
-                {stat.number}<span className="text-lg md:text-3xl">{stat.suffix}</span>
-              </div>
-              <p className="text-sm md:text-base text-gray-600 font-medium">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-
         {/* Elegant Desktop Layout */}
         <div className={`grid lg:grid-cols-5 gap-12 items-stretch transform transition-all duration-1000 delay-800 ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
         }`}>
-          {/* Left Side - Detailed Information */}
-          <div className="lg:col-span-3 order-2 lg:order-1 flex flex-col justify-between lg:h-full space-y-6 lg:space-y-0">
+          {/* Stats Section - Mobile only */}
+          <div className="lg:hidden order-1">
+            <div className="grid grid-cols-2 gap-3 mb-6">
+              {[
+                { number: "400", label: "Elevi premiați în 4 ani", suffix: "+" },
+                { number: "250.000", label: "Donați în 4 ani", suffix: "+ RON" }
+              ].map((stat, index) => (
+                <div 
+                  key={index}
+                  className={`text-center p-3 bg-white rounded-xl shadow-lg border border-gray-100 transform transition-all duration-700 hover:scale-105 hover:shadow-xl ${
+                    isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+                  }`}
+                  style={{ transitionDelay: `${800 + index * 200}ms` }}
+                >
+                  <div className="text-xl font-bold text-primary mb-1">
+                    {stat.number}<span className="text-base">{stat.suffix}</span>
+                  </div>
+                  <p className="text-xs text-gray-600 font-medium">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Left Side - Stats and Detailed Information */}
+          <div className="lg:col-span-3 order-3 lg:order-1 flex flex-col justify-between lg:h-full space-y-6 lg:space-y-0">
+            {/* Stats Section - Desktop only */}
+            <div className="hidden lg:grid grid-cols-2 gap-6 mb-6">
+              {[
+                { number: "400", label: "Elevi premiați în 4 ani", suffix: "+" },
+                { number: "250.000", label: "Donați în 4 ani", suffix: "+ RON" }
+              ].map((stat, index) => (
+                <div 
+                  key={index}
+                  className={`text-center p-6 bg-white rounded-xl shadow-lg border border-gray-100 transform transition-all duration-700 hover:scale-105 hover:shadow-xl ${
+                    isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+                  }`}
+                  style={{ transitionDelay: `${800 + index * 200}ms` }}
+                >
+                  <div className="text-4xl font-bold text-primary mb-1">
+                    {stat.number}<span className="text-2xl">{stat.suffix}</span>
+                  </div>
+                  <p className="text-sm text-gray-600 font-medium">{stat.label}</p>
+                </div>
+              ))}
+            </div>
             <div className="lg:flex-1 lg:flex lg:items-center">
               <p className="text-lg text-gray-700 leading-relaxed">
                 <span className="font-semibold text-primary">&quot;Promovăm valorile, premiem excelența&quot;</span> - 
@@ -114,15 +136,15 @@ export default function AboutEventSection() {
                 Cu sprijinul dumneavoastră și al altor oameni de bine, putem face vizibile și recompensa 
                 eforturile fantastice depuse de către elevii care an de an își depășesc limitele și obțin 
                 premii la concursurile naționale și olimpiadele școlare. Toate donațiile obținute urmând 
-                să se constituie ca <span className="font-medium text-blue-700">fond de premiere</span> pentru aceștia.
+                să se constituie ca <span className="font-medium text-primary">fond de premiere</span> pentru aceștia.
               </p>
             </div>
 
             <div className="lg:flex-1 lg:flex lg:items-center">
               <p className="text-lg text-gray-700 leading-relaxed">
-                Pentru a întregi experiența, evenimentul va include un <span className="font-medium text-blue-700">candy bar </span> 
-                 cu dulciuri rafinate, un <span className="font-medium text-blue-700">cigar bar</span> pentru cunoscători și un 
-                <span className="font-medium text-blue-700"> wine bar</span> cu un somelier dedicat care vă va povesti 
+                Pentru a întregi experiența, evenimentul va include un <span className="font-medium text-primary">candy bar </span> 
+                 cu dulciuri rafinate, un <span className="font-medium text-primary">cigar bar</span> pentru cunoscători și un 
+                <span className="font-medium text-primary"> wine bar</span> cu un somelier dedicat care vă va povesti 
                 fascinantele istorii ale vinurilor italiene pe care le veți degusta.
               </p>
             </div>
@@ -130,7 +152,7 @@ export default function AboutEventSection() {
             <div className="flex items-end justify-center pt-4">
               <button
                 onClick={() => setIsMenuOpen(true)}
-                className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-2xl font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-primary to-primary/90 text-white px-8 py-4 rounded-2xl font-medium hover:from-primary/90 hover:to-primary/80 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 <Utensils className="w-5 h-5" />
                 Vezi Meniu Complet
@@ -139,8 +161,8 @@ export default function AboutEventSection() {
           </div>
 
           {/* Right Side - Event Details Card */}
-          <div className="lg:col-span-2 order-1 lg:order-2">
-            <div className="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden">
+          <div className="lg:col-span-2 order-2 lg:order-2">
+            <div className="bg-gradient-to-br from-primary via-primary/90 to-primary/80 rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden">
               {/* Background Pattern */}
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full -translate-y-16 translate-x-16"></div>
