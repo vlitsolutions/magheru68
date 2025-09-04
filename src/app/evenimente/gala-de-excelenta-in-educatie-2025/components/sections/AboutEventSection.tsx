@@ -60,7 +60,7 @@ export default function AboutEventSection() {
           transition={{ duration: 0.4, delay: 0.3 }}
         >
           <p className="text-2xl md:text-3xl text-gray-600 leading-relaxed font-light mb-8">
-            Olimpiada de Fapte Bune este un bal de strângere de fonduri din orașul Râmnicu Vâlcea, 
+            Gala de Excelența în Educație este un bal de strângere de fonduri din orașul Râmnicu Vâlcea, 
             dedicat sprijinirii excelenței educaționale din comunitatea vâlceană.
           </p>
           <p className="text-lg text-gray-500 leading-relaxed">
@@ -131,7 +131,7 @@ export default function AboutEventSection() {
               <p className="text-lg text-gray-700 leading-relaxed">
                 <span className="font-semibold text-primary">&quot;Promovăm valorile, premiem excelența&quot;</span> - 
                 călauziți de acest principiu nobil, vă invităm să ni vă alăturați la cea de-a IV-a ediție a 
-                <span className="font-medium"> Olimpiadei de Fapte Bune</span>, un eveniment caritabil prin care 
+                <span className="font-medium"> Galei de Excelența în Educație</span>, un eveniment caritabil prin care 
                 dorim să aducem un omagiu performanțelor și devotamentului pentru învățătură.
               </p>
             </div>

@@ -78,7 +78,7 @@ export default function MenuDialog({ isOpen, onClose }: MenuDialogProps) {
           <div className="relative z-10 flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-bold mb-2">Meniu Complet</h2>
-              <p className="text-primary-foreground/80">Olimpiada de Fapte Bune 2025</p>
+              <p className="text-primary-foreground/80">Gala de Excelența în Educație 2025</p>
             </div>
             <Button
               variant="ghost"

@@ -34,7 +34,7 @@ export default function Home() {
                   </h2>
                   <div className="mb-6">
                     <h3 className="text-xl font-semibold text-primary mb-2">
-                      Olimpiada de Fapte Bune 2025
+                      Gala de Excelența în Educație 2025
                     </h3>
                     <p className="text-lg text-gray-600 mb-1">
                       Ediția a IV-a
@@ -47,7 +47,7 @@ export default function Home() {
                     </p>
                   </div>
                   <Button asChild className="w-full bg-primary hover:bg-primary/90">
-                    <Link href="/evenimente/olimpiada-de-fapte-bune-2025">
+                    <Link href="/evenimente/gala-de-excelenta-in-educatie-2025">
                       Vezi Detalii
                     </Link>
                   </Button>

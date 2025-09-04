@@ -22,7 +22,7 @@ export default function StickyHeader({ sections }: StickyHeaderProps) {
   // Get current section title
   const getCurrentSectionTitle = () => {
     const currentSection = sections.find(section => section.id === activeSection);
-    return currentSection ? currentSection.title : 'Olimpiada de Fapte Bune';
+    return currentSection ? currentSection.title : 'Gala de Excelența în Educație';
   };
 
   // Function to update underline position

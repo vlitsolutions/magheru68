@@ -22,7 +22,7 @@ export default function HeroBanner({ sections }: HeroBannerProps) {
       {/* Background image with priority loading */}
       <Image
         src="/hero-banner-event.webp"
-        alt="Olimpiada de Fapte Bune 2025 - Ediția a IV-a"
+        alt="Gala de Excelența în Educație 2025 - Ediția a IV-a"
         fill
         priority
         quality={85}
@@ -55,7 +55,7 @@ export default function HeroBanner({ sections }: HeroBannerProps) {
           <h1 className={`text-5xl md:text-7xl font-bold mb-6 leading-tight text-white transform transition-all duration-1000 delay-300 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
           }`}>
-            Olimpiada de Fapte Bune 2025
+            Gala de Excelența în Educație 2025
           </h1>
           
           <div className={`space-y-4 mb-12 transform transition-all duration-1000 delay-500 ${
