@@ -21,6 +21,14 @@ export const metadata: Metadata = {
   keywords: ["caritate", "evenimente", "olimpiada de fapte bune", "donații", "voluntariat", "comunitate", "România", "Asociația General Magheru 68"],
   authors: [{ name: "Asociația General Magheru 68" }],
   robots: "index, follow",
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+  },
   openGraph: {
     title: "Asociația General Magheru 68 - Evenimente și Inițiative Sociale",
     description: "Asociația General Magheru 68 dedicată îmbunătățirii comunității prin evenimente și inițiative sociale.",
