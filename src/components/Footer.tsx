@@ -17,6 +17,7 @@ export default function Footer() {
                 width={80}
                 height={80}
                 className="h-20 w-auto"
+                style={{ width: 'auto', height: '80px' }}
               />
             </div>
             <h3 className="text-2xl font-bold mb-3">Asociația General Magheru 68</h3>

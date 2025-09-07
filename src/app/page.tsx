@@ -16,6 +16,7 @@ export default function Home() {
               height={300}
               priority
               className="mb-8"
+              style={{ width: '300px', height: 'auto' }}
             />
             <h1 className="text-white text-2xl md:text-3xl font-light mb-4">
               Asociația General Magheru 68

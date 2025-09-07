@@ -79,7 +79,7 @@ export default function RaffleSection() {
           </div>
         </motion.div>
 
-        {/* Prize Categories */}
+        {/* Main Prize - Venice Trip */}
         <div className="mb-16">
           <motion.h3 
             className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-12"
@@ -88,135 +88,158 @@ export default function RaffleSection() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            Categorii de Premii
+            Premiul Principal
           </motion.h3>
           
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-6">
-            {[
-              {
-                category: "Electronice",
-                description: "Gadgeturi și aparatură electronică",
-                icon: "📱",
-                color: "from-primary to-primary/90",
-                prizes: ["Smartphone-uri", "Tablete", "Căști wireless", "Smart watch-uri"],
-                value: "500-3000 lei"
-              },
-              {
-                category: "Electrocasnice",
-                description: "Aparate pentru casă și bucătărie",
-                icon: "🏠",
-                color: "from-primary/90 to-primary/80",
-                prizes: ["Aspiratoare robot", "Cafetiere", "Blendere", "Friteuze cu aer"],
-                value: "200-1500 lei"
-              },
-              {
-                category: "Experiențe",
-                description: "Vouchere și experiențe memorabile",
-                icon: "🎁",
-                color: "from-primary/80 to-primary/70",
-                prizes: ["Vouchere SPA", "Cine city", "Restaurante", "Activități outdoor"],
-                value: "100-800 lei"
-              },
-              {
-                category: "Premii Speciale",
-                description: "Premii unice și de colecție",
-                icon: "⭐",
-                color: "from-primary/110 to-primary",
-                prizes: ["Bijuterii", "Opere de artă", "Obiecte vintage", "Produse handmade"],
-                value: "300-2000 lei"
-              }
-            ].map((prize, index) => (
-              <motion.div 
-                key={index}
-                className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transform transition-all duration-700 hover:-translate-y-3 overflow-hidden"
-                initial={{ y: 48, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
-              >
-                {/* Header */}
-                <div className={`bg-gradient-to-r ${prize.color} p-6 text-white relative`}>
-                  <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors duration-300"></div>
-                  <div className="relative z-10 text-center">
-                    <div className="text-4xl mb-3 transform group-hover:scale-110 transition-transform duration-300">
-                      {prize.icon}
-                    </div>
-                    <h4 className="text-xl font-bold mb-2">{prize.category}</h4>
-                    <p className="text-sm opacity-90 mb-3">{prize.description}</p>
-                    <div className="bg-white/20 rounded-full px-3 py-1 text-xs font-medium">
-                      {prize.value}
-                    </div>
+          <motion.div 
+            className="max-w-5xl mx-auto bg-gradient-to-br from-primary/10 via-primary/5 to-primary/15 rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transform transition-all duration-1000 hover:scale-[1.02] mb-12"
+            initial={{ y: 48, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="md:flex">
+              {/* Image Section */}
+              <div className="md:w-1/2 relative">
+                <div className="aspect-[4/3] md:aspect-auto md:h-full relative overflow-hidden">
+                  <img 
+                    src="/venetia.webp" 
+                    alt="Venetia - Peisaj romantic cu gondole și canale"
+                    className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-black/20"></div>
+                </div>
+              </div>
+              
+              {/* Content Section */}
+              <div className="md:w-1/2 p-8 md:p-12">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                    <span className="text-2xl">🇮🇹</span>
+                  </div>
+                  <div>
+                    <p className="text-primary font-semibold text-sm uppercase tracking-wide">Experiența de vis</p>
+                    <div className="w-16 h-0.5 bg-primary/50 mt-1"></div>
                   </div>
                 </div>
+
+                <h4 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                  Escapadă Romantică în Veneția
+                </h4>
                 
-                {/* Content */}
-                <div className="p-6">
-                  <ul className="space-y-2">
-                    {prize.prizes.map((item, itemIndex) => (
-                      <motion.li 
-                        key={itemIndex}
-                        className="flex items-center gap-2 text-sm text-gray-600"
-                        initial={{ x: 16, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: (index * 0.15) + (itemIndex * 0.05) + 0.3 }}
-                      >
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0"></div>
-                        <span className="group-hover:text-gray-800 transition-colors">{item}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
+                <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                  <span className="font-medium text-primary">Câștigătorul și persoana îndrăgită</span> vor trăi o experiență de neuitat în <span className="font-medium text-gray-900">orașul pe apă</span>. Două zile magice printre canalele istorice, unde fiecare colț spune o poveste de dragoste și istorie.
+                </p>
+
+                <div className="space-y-4 mb-6">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-gray-700"><span className="font-medium">Tur ghidat prin orașul vechi</span> - descoperiți secretele ascunse ale Piața San Marco, Podul Suspinelor și Palatul Dogilor</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-gray-700"><span className="font-medium">Tur de degustare vinuri cu ghid</span> - oferit de <span className="font-semibold text-primary">Vinuri.Shop</span>, cu vinuri locale și delicatese venetiene autentice</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-gray-700"><span className="font-medium">Cazare 2 nopți</span> în accommodare selectă în zona centrală, cu priveliști spectaculoase</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-gray-700"><span className="font-medium">Transfer și zbor inclus</span> - plecarea din România în confort total</p>
+                  </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+
+                <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200/50 rounded-2xl p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-xl">✨</span>
+                    <p className="font-semibold text-orange-800">Bonus Inclus</p>
+                  </div>
+                  <p className="text-orange-700 text-sm">Plimbare romantică cu gondola la apus și cină la restaurant cu o stea Michelin</p>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-gray-200">
+                  <p className="text-lg font-semibold text-primary">Toate costurile incluse pentru 2 persoane</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
-        {/* How to Participate */}
-        <motion.div 
-          className="bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 rounded-3xl p-8 md:p-12 mb-16"
-          initial={{ y: 48, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <div className="text-center mb-8">
-            <Trophy className="w-12 h-12 text-primary mx-auto mb-4" />
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-              Cum Participi la Tombolă
-            </h3>
-            <p className="text-lg text-gray-600">
-              Procesul este simplu și transparent pentru toți participanții
+        {/* Additional Surprises */}
+        <div className="mb-16">
+          <motion.h3 
+            className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-4"
+            initial={{ y: 32, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
+            Și Multe Alte Surprize
+          </motion.h3>
+          
+          <motion.p 
+            className="text-lg text-gray-600 text-center mb-12 max-w-3xl mx-auto"
+            initial={{ y: 24, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Pe lângă marele premiu, tombola oferă <span className="font-semibold text-primary">numeroase surprize valoroase</span> pentru toți participanții
+          </motion.p>
+          
+          <motion.div 
+            className="text-center bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 rounded-3xl p-8 md:p-12 border border-primary/20"
+            initial={{ y: 32, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span className="text-3xl">🎁</span>
+            </div>
+            
+            <h4 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+              Surprize Misterioase
+            </h4>
+            
+            <p className="text-lg text-gray-700 leading-relaxed mb-6 max-w-2xl mx-auto">
+              Pregătim pentru voi o selecție spectaculoasă de premii ce vor fi dezvăluite progresiv în seara magică a galei. 
+              <span className="font-medium text-primary"> Fiecare bilet aduce cu sine emoția surprizei</span> și șansa de a câștiga experiențe și obiecte de neuitat.
             </p>
-          </div>
 
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { step: "1", title: "Achiziționează", description: "Cumpără bilete de tombolă la intrare", icon: <Ticket className="w-6 h-6" /> },
-              { step: "2", title: "Depune", description: "Completează biletele cu datele tale", icon: "✏️" },
-              { step: "3", title: "Așteaptă", description: "Urmărește extragerea live pe scenă", icon: "👀" },
-              { step: "4", title: "Câștigă", description: "Ridică premiul dacă ești norocos", icon: "🎉" }
-            ].map((step, index) => (
-              <motion.div 
-                key={index}
-                className="text-center bg-white/60 backdrop-blur-sm rounded-xl p-6 border border-white/40 transform transition-all duration-500 hover:scale-105"
-                initial={{ y: 32, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.5 + (index * 0.1) }}
-              >
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 text-primary">
-                  {typeof step.icon === 'string' ? step.icon : step.icon}
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 border border-white/40">
+                <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-white text-xl">✨</span>
                 </div>
-                <div className="text-xs font-bold text-primary mb-2 bg-primary/10 rounded-full w-6 h-6 flex items-center justify-center mx-auto">
-                  {step.step}
+                <h5 className="font-semibold text-gray-900 mb-2">Premii Exclusive</h5>
+                <p className="text-sm text-gray-600">Obiecte unice și experiențe memorabile</p>
+              </div>
+              
+              <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 border border-white/40">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-white text-xl">🎯</span>
                 </div>
-                <h4 className="font-semibold text-gray-900 mb-2">{step.title}</h4>
-                <p className="text-sm text-gray-600">{step.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+                <h5 className="font-semibold text-gray-900 mb-2">Șanse Reale</h5>
+                <p className="text-sm text-gray-600">Fiecare participant are oportunități multiple</p>
+              </div>
+              
+              <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 border border-white/40">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-white text-xl">🌟</span>
+                </div>
+                <h5 className="font-semibold text-gray-900 mb-2">Revelații Live</h5>
+                <p className="text-sm text-gray-600">Surprizele se dezvăluie pe scenă</p>
+              </div>
+            </div>
+
+            <p className="text-gray-600 italic">
+              "Să vă lăsați cuprinși de magia necunoscutului..." ✨
+            </p>
+          </motion.div>
+        </div>
+
 
         {/* Call to Action */}
         <motion.div 

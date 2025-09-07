@@ -1,6 +1,6 @@
 'use client'
 
-import { DollarSign, Heart, Shield, Copy, Check } from "lucide-react";
+import { DollarSign, Heart, Shield, Copy, Check, ExternalLink, Play, Newspaper, Globe, Facebook } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -257,28 +257,146 @@ export default function DonationsSection() {
               </div>
             </div>
 
-            {/* Trust Indicators */}
-            <div className="space-y-4">
-              {[
-                "Certificare oficială pentru activitate non-profit",
-                "Rapoarte financiare publice anuale",
-                "Feedback direct de la beneficiari",
-                "Monitorizare continuă a proiectelor"
-              ].map((indicator, index) => (
-                <motion.div 
-                  key={index}
-                  className="flex items-center gap-3 p-4 bg-white rounded-lg border border-gray-100 hover:shadow-md"
+            {/* Media Coverage */}
+            <div className="space-y-6">
+              <h4 className="text-xl font-semibold text-gray-900 mb-4">Mediatizare și Recunoaștere</h4>
+              
+              {/* News Articles */}
+              <div className="space-y-4">
+                <motion.a 
+                  href="https://jurnalulolteniei.ro/2024/10/06/33-elevi-de-nota-10-au-primit-premii-de-excelenta-la-gala-educatiei-valcene/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-100 hover:shadow-lg hover:border-primary/30 transition-all duration-300"
                   initial={{ x: 32, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.3, delay: 0.65 + index * 0.08 }}
+                  transition={{ duration: 0.3, delay: 0.65 }}
                 >
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <div className="w-3 h-3 bg-primary rounded-full"></div>
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                    <Newspaper className="w-6 h-6 text-blue-600 group-hover:text-primary" />
                   </div>
-                  <p className="text-gray-700 text-sm">{indicator}</p>
-                </motion.div>
-              ))}
+                  <div className="flex-1">
+                    <h5 className="font-semibold text-gray-900 group-hover:text-primary mb-2 transition-colors">
+                      33 elevi de nota 10 au primit premii de excelență la Gala Educației Vâlcene
+                    </h5>
+                    <p className="text-sm text-gray-600 mb-2 line-clamp-2">
+                      La Gala Educației Vâlcene au fost premiați elevii cu rezultate excepționale la olimpiadele și concursurile naționale.
+                    </p>
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                      <span>jurnalulolteniei.ro</span>
+                      <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+                      <span>Articol de presă</span>
+                    </div>
+                  </div>
+                  <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors" />
+                </motion.a>
+
+                <motion.a 
+                  href="https://saptamana.net/articol/22587-gala-excelentei-in-educatie-moment-festiv-pentru-exponentii-valorilor-valcene"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-100 hover:shadow-lg hover:border-primary/30 transition-all duration-300"
+                  initial={{ x: 32, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.3, delay: 0.73 }}
+                >
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                    <Newspaper className="w-6 h-6 text-green-600 group-hover:text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <h5 className="font-semibold text-gray-900 group-hover:text-primary mb-2 transition-colors">
+                      Gala Excelenței în Educație - moment festiv pentru exponenții valorilor vâlcene
+                    </h5>
+                    <p className="text-sm text-gray-600 mb-2 line-clamp-2">
+                      Evenimentul caritabil care celebrează excelența educațională și sprijină tinerii performeri din Vâlcea.
+                    </p>
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                      <span>saptamana.net</span>
+                      <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+                      <span>Articol de presă</span>
+                    </div>
+                  </div>
+                  <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors" />
+                </motion.a>
+
+                {/* TVR Article */}
+                <motion.a 
+                  href="https://tvr-craiova.ro/stiri/gala-excelentei-in-educatie-la-valcea/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-start gap-4 p-4 bg-gradient-to-br from-red-50 to-red-100 rounded-xl border border-red-200 hover:shadow-lg hover:border-primary/30 transition-all duration-300"
+                  initial={{ x: 32, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.3, delay: 0.81 }}
+                >
+                  <div className="w-12 h-12 bg-red-200 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                    <Globe className="w-6 h-6 text-red-600 group-hover:text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <h5 className="font-semibold text-gray-900 group-hover:text-primary mb-2 transition-colors">
+                      Gala Excelenței în Educație la Vâlcea
+                    </h5>
+                    <p className="text-sm text-gray-600 mb-2 line-clamp-2">
+                      Reportaj TVR Craiova despre evenimentul caritabil organizat în sprijinul elevilor olimpici din județul Vâlcea.
+                    </p>
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                      <span>TVR Craiova</span>
+                      <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+                      <span>Reportaj TV</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="bg-red-600 text-white px-2 py-1 rounded text-xs font-medium">
+                      TVR
+                    </div>
+                    <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors" />
+                  </div>
+                </motion.a>
+
+                {/* Facebook Video */}
+                <motion.a 
+                  href="https://www.facebook.com/adrian.pana.7/videos/valcea-gala-excelen%C8%9Bei-%C3%AEn-educa%C8%9Bie-edi%C8%9Bia-a-iii-a147-de-elevi-155-premii-%C3%AEn-tota/1300144141178113/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-start gap-4 p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl border border-blue-200 hover:shadow-lg hover:border-primary/30 transition-all duration-300"
+                  initial={{ x: 32, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.3, delay: 0.89 }}
+                >
+                  <div className="w-12 h-12 bg-blue-200 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                    <Facebook className="w-6 h-6 text-blue-600 group-hover:text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <h5 className="font-semibold text-gray-900 group-hover:text-primary mb-2 transition-colors">
+                      Vâlcea - Gala Excelenței în Educație, ediția a III-a
+                    </h5>
+                    <p className="text-sm text-gray-600 mb-2 line-clamp-2">
+                      Video de la eveniment: 147 de elevi, 155 premii în total. Momentele speciale ale galei caritabile.
+                    </p>
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                      <span>Adrian Pană</span>
+                      <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+                      <span>Video Facebook</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="bg-blue-600 text-white px-2 py-1 rounded text-xs font-medium">
+                      Facebook
+                    </div>
+                    <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors" />
+                  </div>
+                </motion.a>
+              </div>
+
+              <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
+                <p className="text-sm text-blue-800 font-medium text-center">
+                  📺 Urmăriți acoperirea media completă a evenimentelor noastre caritabile și impactul în comunitate
+                </p>
+              </div>
             </div>
           </motion.div>
         </div>
