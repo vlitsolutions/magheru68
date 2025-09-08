@@ -5,8 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function Home() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#5271FF' }}>
-      <main className="flex flex-col items-center justify-center min-h-screen px-4">
+    <div className="min-h-screen" style={{ backgroundColor: '#29387f' }}>
+      <main className="flex flex-col items-center justify-center min-h-screen px-4 py-8 md:py-0">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12 max-w-7xl mx-auto">
           <div className="flex flex-col items-center text-center">
             <Image
@@ -22,10 +22,10 @@ export default function Home() {
               Asociația General Magheru 68
             </h1>
             <p className="text-white/80 text-lg max-w-md">
-               dedicată sprijinirii excelenței educaționale în comunitatea vâlceană
+              dedicată sprijinirii excelenței educaționale în comunitatea vâlceană
             </p>
           </div>
-          
+
           <div className="lg:ml-16">
             <div className="w-full max-w-md bg-white/95 backdrop-blur-sm shadow-xl rounded-xl overflow-hidden">
               <Image
@@ -65,6 +65,21 @@ export default function Home() {
           </div>
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="text-white text-center py-6 px-4">
+        <p className="text-white/60 text-sm">
+          © 2025 by{" "}
+          <a
+            href="https://vlit-solutions.ro"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-white/80 transition-colors underline"
+          >
+            VLIT Solutions
+          </a>
+        </p>
+      </footer>
     </div>
   );
 }

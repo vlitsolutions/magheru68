@@ -66,7 +66,20 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center text-gray-400">
             <p>&copy; 2025 Asociația General Magheru 68. Toate drepturile rezervate.</p>
-            <p className="mt-2 md:mt-0">Gala de Excelența în Educație - Ediția a IV-a</p>
+            <div className="mt-2 md:mt-0 text-center md:text-right">
+              <p className="mb-1">Gala de Excelența în Educație - Ediția a IV-a</p>
+              <p className="text-sm">
+                © 2025 by{" "}
+                <a 
+                  href="https://vlit-solutions.ro" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-white transition-colors underline"
+                >
+                  VLIT Solutions
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </div>

@@ -26,7 +26,7 @@ export default function HeroBanner({ sections }: HeroBannerProps) {
       {/* Enhanced gradient overlay for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/70 to-black/90"></div>
       
-      <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center text-white px-4 w-[75%] md:max-w-4xl mx-auto">
         <div className="mb-12">
           <div className={`transform transition-all duration-1000 ${
             isVisible ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-8 opacity-0 scale-95'
