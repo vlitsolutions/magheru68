@@ -3,7 +3,10 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-// Images from gala-2024 optimized
+// Primary hero image for fast LCP
+const heroImage = { name: 'DSC_2575', alt: 'Momente festive de la Gala de Excelența în Educație' };
+
+// Additional slideshow images (loaded progressively)
 const slideImages = [
   { name: 'DSC_2575', alt: 'Momente festive de la Gala de Excelența în Educație' },
   { name: 'DDD_6078', alt: 'Atmosfera elegantă a galei de caritate' },
@@ -29,73 +32,83 @@ const getBlurDataURL = (imageName: string) => {
   return `/gala-2024-optimized/${imageName}-blur.webp`;
 };
 
+// Get responsive image src based on screen size
+const getResponsiveImageSrc = (imageName: string) => {
+  if (typeof window === 'undefined') return `${getImageSrc(imageName)}-desktop.webp`;
+  
+  if (window.innerWidth <= 480) {
+    return `${getImageSrc(imageName)}-mobile.webp`;
+  } else if (window.innerWidth <= 1024) {
+    return `${getImageSrc(imageName)}-tablet.webp`;
+  } else {
+    return `${getImageSrc(imageName)}-desktop.webp`;
+  }
+};
+
 export default function HeroSlideshow() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [firstImageLoaded, setFirstImageLoaded] = useState(false);
-  const [allImagesPreloaded, setAllImagesPreloaded] = useState(false);
-  const [randomizedImages, setRandomizedImages] = useState(slideImages);
+  const [heroImageLoaded, setHeroImageLoaded] = useState(false);
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set([heroImage.name]));
+  const [slideshowActive, setSlideshowActive] = useState(false);
+  const [availableSlides, setAvailableSlides] = useState([heroImage]);
 
-  // Randomize slides on mount
+  // Progressive image loading after hero image loads
   useEffect(() => {
-    const shuffled = [...slideImages].sort(() => Math.random() - 0.5);
-    setRandomizedImages(shuffled);
-  }, []);
+    if (!heroImageLoaded) return;
 
-  // Preload all images after first image loads
-  useEffect(() => {
-    if (firstImageLoaded && !allImagesPreloaded) {
-      const preloadImages = async () => {
-        const imagePromises = randomizedImages.slice(1).map(async (slide) => {
-          return new Promise<void>((resolve) => {
-            const img = document.createElement('img');
-            img.onload = () => resolve();
-            img.onerror = () => resolve(); // Still resolve on error to continue
-            
-            // Preload appropriate image size based on screen
-            if (window.innerWidth <= 480) {
-              img.src = `${getImageSrc(slide.name)}-mobile.webp`;
-            } else if (window.innerWidth <= 1024) {
-              img.src = `${getImageSrc(slide.name)}-tablet.webp`;
-            } else if (window.innerWidth <= 1440) {
-              img.src = `${getImageSrc(slide.name)}-desktop.webp`;
-            } else {
-              img.src = `${getImageSrc(slide.name)}-large.webp`;
-            }
+    const loadImagesProgressively = () => {
+      const remainingImages = slideImages.slice(1); // Skip DSC_2575 as it's already loaded
+      
+      // Start all image downloads immediately
+      remainingImages.forEach(slide => {
+        const img = document.createElement('img');
+        img.onload = () => {
+          setLoadedImages(prev => {
+            const updated = new Set([...prev, slide.name]);
+            return updated;
           });
-        });
 
-        try {
-          await Promise.all(imagePromises);
-          setAllImagesPreloaded(true);
-        } catch (error) {
-          console.warn('Some images failed to preload:', error);
-          setAllImagesPreloaded(true);
-        }
-      };
+          setAvailableSlides(prev => {
+            const newSlides = slideImages.filter(s => 
+              prev.some(p => p.name === s.name) || s.name === slide.name
+            );
+            return newSlides;
+          });
 
-      preloadImages();
-    }
-  }, [firstImageLoaded, randomizedImages, allImagesPreloaded]);
+          // Start slideshow once we have at least 3 images loaded
+          if (!slideshowActive && loadedImages.size + 1 >= 3) {
+            setSlideshowActive(true);
+          }
+        };
+        img.onerror = () => {
+          console.warn(`Failed to load image: ${slide.name}`);
+        };
+        img.src = getResponsiveImageSrc(slide.name);
+      });
+    };
 
-  // Auto-advance slides only after images are ready
+    loadImagesProgressively();
+  }, [heroImageLoaded, loadedImages.size, slideshowActive]);
+
+  // Auto-advance slides only when slideshow is active
   useEffect(() => {
-    if (!firstImageLoaded) return;
+    if (!slideshowActive || availableSlides.length < 2) return;
 
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % randomizedImages.length);
+      setCurrentSlide((prev) => (prev + 1) % availableSlides.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [randomizedImages, firstImageLoaded]);
+  }, [slideshowActive, availableSlides.length]);
 
-  // Track when first image loads
-  const handleFirstImageLoad = () => {
-    setFirstImageLoaded(true);
+  // Track when hero image loads
+  const handleHeroImageLoad = () => {
+    setHeroImageLoaded(true);
   };
 
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden">
-      {randomizedImages.map((slide, index) => (
+      {availableSlides.map((slide, index) => (
         <div
           key={slide.name}
           className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
@@ -112,23 +125,20 @@ export default function HeroSlideshow() {
               srcSet={`${getImageSrc(slide.name)}-tablet.webp`}
             />
             <source
-              media="(max-width: 1440px)"
+              media="(min-width: 1025px)"
               srcSet={`${getImageSrc(slide.name)}-desktop.webp`}
-            />
-            <source
-              media="(min-width: 1441px)"
-              srcSet={`${getImageSrc(slide.name)}-large.webp`}
             />
             <Image
               src={`${getImageSrc(slide.name)}-desktop.webp`}
               alt={slide.alt}
               fill
-              priority={index === 0}
-              sizes="(max-width: 480px) 100vw, (max-width: 1024px) 100vw, (max-width: 1440px) 100vw, 100vw"
+              priority={slide.name === heroImage.name}
+              fetchPriority={slide.name === heroImage.name ? "high" : "low"}
+              sizes="(max-width: 480px) 100vw, (max-width: 1024px) 100vw, 100vw"
               className="object-cover object-center"
               placeholder="blur"
               blurDataURL={getBlurDataURL(slide.name)}
-              onLoad={index === 0 ? handleFirstImageLoad : undefined}
+              onLoad={slide.name === heroImage.name ? handleHeroImageLoad : undefined}
               style={{
                 objectPosition: 'center center'
               }}
