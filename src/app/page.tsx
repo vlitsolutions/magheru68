@@ -27,8 +27,15 @@ export default function Home() {
           </div>
           
           <div className="lg:ml-16">
-            <Card className="w-full max-w-md bg-white/95 backdrop-blur-sm shadow-xl">
-              <CardContent className="p-8">
+            <div className="w-full max-w-md bg-white/95 backdrop-blur-sm shadow-xl rounded-xl overflow-hidden">
+              <Image
+                src="/hero-banner-event.webp"
+                alt="Gala de Excelența în Educație 2025"
+                width={400}
+                height={200}
+                className="w-full h-48 object-cover"
+              />
+              <div className="px-8 py-6">
                 <div className="text-center">
                   <h2 className="text-2xl font-bold text-gray-800 mb-2">
                     Următorul Eveniment
@@ -53,8 +60,8 @@ export default function Home() {
                     </Link>
                   </Button>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </div>
       </main>

@@ -157,7 +157,7 @@ export default function SponsorsSection() {
             </h3>
             <div className="space-y-4 text-lg md:text-xl text-gray-700 leading-relaxed">
               <p>
-                <span className="font-bold text-primary">Asociația „General Magheru 68"</span> în parteneriat cu
+                <span className="font-bold text-primary">Asociația &ldquo;General Magheru 68&rdquo;</span> în parteneriat cu
               </p>
               <div className="flex flex-wrap justify-center gap-2 md:gap-4">
                 <span className="bg-white/70 backdrop-blur-sm rounded-full px-4 py-2 font-semibold text-gray-800 shadow-sm">
@@ -167,7 +167,7 @@ export default function SponsorsSection() {
                   Consiliul Județean Vâlcea
                 </span>
                 <span className="bg-white/70 backdrop-blur-sm rounded-full px-4 py-2 font-semibold text-gray-800 shadow-sm">
-                  Asociația "Anton Pann 273" Rm. Vâlcea
+                  Asociația &ldquo;Anton Pann 273&rdquo; Rm. Vâlcea
                 </span>
               </div>
             </div>

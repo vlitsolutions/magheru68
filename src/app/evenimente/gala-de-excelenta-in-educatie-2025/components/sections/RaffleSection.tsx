@@ -1,7 +1,8 @@
 'use client'
 
-import { Gift, Star, Zap, Trophy, Ticket } from "lucide-react";
+import { Gift, Star, Zap } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function RaffleSection() {
 
@@ -102,9 +103,11 @@ export default function RaffleSection() {
               {/* Image Section */}
               <div className="md:w-1/2 relative">
                 <div className="aspect-[4/3] md:aspect-auto md:h-full relative overflow-hidden">
-                  <img 
+                  <Image 
                     src="/venetia.webp" 
                     alt="Venetia - Peisaj romantic cu gondole și canale"
+                    width={400}
+                    height={300}
                     className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-black/20"></div>
@@ -235,7 +238,7 @@ export default function RaffleSection() {
             </div>
 
             <p className="text-gray-600 italic">
-              "Să vă lăsați cuprinși de magia necunoscutului..." ✨
+&quot;Să vă lăsați cuprinși de magia necunoscutului...&quot; ✨
             </p>
           </motion.div>
         </div>

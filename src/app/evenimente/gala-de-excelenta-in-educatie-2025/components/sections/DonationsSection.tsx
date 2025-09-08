@@ -1,6 +1,6 @@
 'use client'
 
-import { DollarSign, Heart, Shield, Copy, Check, ExternalLink, Play, Newspaper, Globe, Facebook } from "lucide-react";
+import { DollarSign, Heart, Shield, Copy, Check, ExternalLink, Newspaper, Globe, Facebook } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 

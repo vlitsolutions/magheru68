@@ -14,50 +14,7 @@ export default function MenuDialog({ isOpen, onClose }: MenuDialogProps) {
 
   if (!isOpen) return null;
 
-  const foodMenu = {
-    aperitive: [
-      "Platou de brânzeturi românești cu miere și nuci",
-      "Cărnați de Pleșcoi cu muștar de Tecuci",
-      "Salată de icre de știucă cu măsline",
-      "Bruschette cu roșii confiate și busuioc"
-    ],
-    felulPrincipal: [
-      "Ciorbă de burtă tradițională",
-      "Mici la grătar cu muștar și pâine de casă",
-      "Papanași cu smântână și dulceață de vișine",
-      "Sarmale în foi de varză cu mămăligă și smântână",
-      "Miel la proțap cu garnitură de legume de sezon"
-    ],
-    deserturi: [
-      "Tort Amandine cu cremă de ciocolată",
-      "Clătite cu brânză dulce și stafide",
-      "Cozonac cu nucă și rahat",
-      "Înghețată artizanală cu fructe de pădure"
-    ]
-  };
 
-  const drinksMenu = {
-    aperitive: [
-      "Țuică de prună din Vâlcea (50ml)",
-      "Pălincă de pere Williams (50ml)", 
-      "Vin fiert cu scorțișoară și cuișoare",
-      "Cocktail de bun venit cu șampanie"
-    ],
-    vinuri: [
-      "Fetească Neagră - Cramele Halewood",
-      "Riesling Italian - Villa Zorești",
-      "Cabernet Sauvignon - Domeniul Bogdan",
-      "Rosé de Odobești - tradiție vâlceană",
-      "Șampanie românească - Casa de Vinuri Tohani"
-    ],
-    nealcoolice: [
-      "Suc natural de mere din Vâlcea", 
-      "Limonadă cu menta și lime",
-      "Ceai de munte cu miere",
-      "Apă minerală Covasna și Bucovina",
-      "Cafea românească proaspăt măcinată"
-    ]
-  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">

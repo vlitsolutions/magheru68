@@ -1,59 +1,12 @@
 'use client'
 
-import { Music, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Music, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 
-const artists = [
-  {
-    id: 1,
-    name: "Alexandru Ilinca",
-    category: "Dirijor și Pianist",
-    image: "/artisti/alexandru_ilinca.webp",
-    description: "Alexandru Ilinca este un dirijor și pianist de renume internațional, cunoscut pentru interpretările sale rafinate și pentru contribuția sa la promovarea muzicii clasice contemporane. Cu o carieră strălucită ce se întinde pe mai multe decenii, maestrul Ilinca a colaborat cu cele mai prestigioase orchestre din Europa."
-  },
-  {
-    id: 2,
-    name: "Bogdan Vladău",
-    category: "Violonist",
-    image: "/artisti/bogdan_vladau.webp",
-    description: "Bogdan Vladău este un violonist virtuoz, recunoscut pentru tehnica sa impecabilă și pentru capacitatea de a transmite emoții profunde prin muzică. Absolvent al Conservatorului din București, a câștigat numeroase premii internaționale și susține concerte în întreaga lume."
-  },
-  {
-    id: 3,
-    name: "Zina Ghițulescu",
-    category: "Cântăreață Lirică",
-    image: "/artisti/zina_ghitulescu.webp",
-    description: "Zina Ghițulescu este o sopran de excepție, apreciată pentru vocea sa cristalină și pentru interpretările memorabile din repertoriul liric românesc și internațional. Cu o prezență scenică magnetică, ea a cucerit publicul din România și din străinătate."
-  }
-];
 
-const featuredArtists = [
-  {
-    id: 1,
-    name: "Mihai Mitoșeru",
-    role: "Prezentator",
-    image: "/artisti/mihai_mitoseru.webp",
-    description: "Cu o experiență vastă în televiziune și radio, Mihai Mitoșeru va fi gazda perfectă pentru această seară specială. Cunoscut pentru carisma sa și abilitatea de a conecta cu publicul, el va ghida evenimentul cu eleganță și profesionalism, asigurându-se că fiecare moment al serii va fi memorabil."
-  },
-  {
-    id: 2, 
-    name: "Zina Ghițulescu",
-    role: "Entertainment",
-    subtitle: "& Band",
-    image: "/artisti/zina_ghitulescu.webp",
-    description: "Zina Ghițulescu, o sopran de renume internațional, va oferi împreună cu banda sa o experiență muzicală extraordinară. Repertoriul va cuprinde o selecție rafinată de piese clasice și contemporane, interpretate cu măestria care a consacrat-o ca una dintre cele mai apreciate artiste ale scenei românești."
-  },
-  {
-    id: 3,
-    name: "Bogdan Vladău", 
-    role: "Prezentator",
-    image: "/artisti/bogdan_vladau.webp",
-    description: "Bogdan Vladău, violonist virtuoz și personalitate media apreciată, va aduce o notă artistică specială evenimentului nostru. Cu o carieră strălucită în muzica clasică și o prezență scenică captivantă, el va îmbogăți atmosfera serii cu momentele sale artistice și va contribui la prezentarea evenimentului."
-  }
-];
 
 const specialGuests = [
   {
@@ -485,7 +438,7 @@ export default function ArtisticMomentsSection() {
                       key={`${guest.id}-${index}`}
                       className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4 md:px-6 lg:px-8"
                     >
-                      <div className="bg-white rounded-xl md:rounded-2xl shadow-lg border border-gray-200 relative flex flex-col mx-auto max-w-sm md:max-w-md lg:max-w-sm"
+                      <div className="bg-white rounded-xl md:rounded-2xl shadow-lg border border-gray-200 relative flex flex-col mx-auto max-w-sm md:max-w-md lg:max-w-sm h-full"
                            style={{ boxShadow: '0 8px 32px rgba(30, 64, 175, 0.3), 0 4px 16px rgba(30, 64, 175, 0.2)' }}>
                         <Image 
                           src={guest.image} 
@@ -495,12 +448,12 @@ export default function ArtisticMomentsSection() {
                           className="absolute -top-12 left-1/2 transform -translate-x-1/2 w-full h-40 md:h-48 lg:h-52 object-cover object-top rounded-lg pointer-events-none"
                           draggable={false}
                         />
-                        <div className="pt-32 md:pt-40 lg:pt-44 p-5 md:p-6 pb-8 text-center">
+                        <div className="pt-32 md:pt-40 lg:pt-44 p-5 md:p-6 pb-8 text-center flex flex-col flex-1">
                           <div className="mb-6">
                             <h4 className="text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-3">{guest.name}</h4>
                             <p className="text-blue-700 font-medium text-base md:text-lg mb-4">{guest.occupation}</p>
                           </div>
-                          <p className="text-gray-600 text-sm md:text-base leading-relaxed">{guest.description}</p>
+                          <p className="text-gray-600 text-sm md:text-base leading-relaxed flex-1">{guest.description}</p>
                         </div>
                       </div>
                     </div>

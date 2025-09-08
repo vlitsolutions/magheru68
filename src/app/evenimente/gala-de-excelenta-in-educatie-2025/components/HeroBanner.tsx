@@ -1,18 +1,11 @@
 'use client'
 
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import HeroSlideshow from "./HeroSlideshow";
 
-interface HeroBannerProps {
-  sections: Array<{
-    id: string;
-    title: string;
-  }>;
-}
 
-export default function HeroBanner({ sections }: HeroBannerProps) {
+export default function HeroBanner() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
