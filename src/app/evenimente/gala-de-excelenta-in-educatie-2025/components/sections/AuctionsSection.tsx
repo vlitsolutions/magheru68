@@ -17,9 +17,9 @@ export default function AuctionsSection() {
       items: [
         { title: "Minge Tenis Simona Halep", subtitle: "Semnată de campioana noastră olimpică", icon: "🎾" },
         { title: "Tricou Naționala României", subtitle: "Semnat de golgheterul echipei naționale", icon: "⚽" },
-        { title: "Set Universitatea Craiova", subtitle: "Tricou oficial + minge echipei", icon: "⚽" },
-        { title: "Tricou FC Dinamo", subtitle: "Echipa curentă, sezonul 2024-2025", icon: "⚽" },
-        { title: "Mănuși Florian Pruna", subtitle: "Portarul legendar al Dinamovului", icon: "🧤" },
+        { title: "Set Universitatea Craiova", subtitle: "Tricoul oficial + mingea echipei", icon: "⚽" },
+        { title: "Tricou FC Dinamo", subtitle: "Echipa curentă, ediție limitată", icon: "⚽" },
+        { title: "Mănuși Florian Pruna", subtitle: "Portarul legendar al echipe Dinamo", icon: "🧤" },
         { title: "Tricou FCSB", subtitle: "Echipa curentă, ediție limitată", icon: "⚽" },
         { title: "Echipament Alina Vuc", subtitle: "Piesă autentică din competițiile internaționale", icon: "🏃‍♀️" },
         { title: "Minge Națională Semnată", subtitle: "Oficială, cu autografele lotului României", icon: "⚽" },
@@ -27,7 +27,7 @@ export default function AuctionsSection() {
         { title: "Set CS Vâlcea 1924", subtitle: "Tricou + minge Kenny Gabriel", icon: "🏀" },
         { title: "Set SCM Râmnicu Vâlcea", subtitle: "Vestimentație jucătoare + minge oficială", icon: "🏐" },
         { title: "Piolet Horia Colibășanu", subtitle: "Echipament utilizat în expedițiile legendare", icon: "⛏️" },
-        { title: "Mănuși Daniel Moroșanu", subtitle: "Campionul român de K1 și kickboxing", icon: "🥊" },
+        { title: "Mănuși Cătălin Moroșanu", subtitle: "Campionul român de K1 și kickboxing", icon: "🥊" },
         { title: "Șort Stoica", subtitle: "Echipament din competițiile MMA", icon: "🥊" },
         { title: "Tricou Zarioiu", subtitle: "Vestimentația luptătorului MMA", icon: "🥊" }
       ]
@@ -88,14 +88,14 @@ export default function AuctionsSection() {
         hover: 'hover:text-red-600'
       },
       purple: {
-        bg: 'from-purple-500 to-purple-600', 
+        bg: 'from-purple-500 to-purple-600',
         text: 'text-purple-600',
         border: 'border-purple-100',
         hover: 'hover:text-purple-600'
       },
       yellow: {
         bg: 'from-yellow-500 to-orange-500',
-        text: 'text-yellow-600', 
+        text: 'text-yellow-600',
         border: 'border-yellow-100',
         hover: 'hover:text-yellow-600'
       }
@@ -114,7 +114,7 @@ export default function AuctionsSection() {
 
 
   return (
-    <motion.section 
+    <motion.section
       id="licitatii"
       className="py-20 bg-gray-50 relative overflow-hidden"
       initial={{ opacity: 0 }}
@@ -128,17 +128,17 @@ export default function AuctionsSection() {
         <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-yellow-200/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-orange-200/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
       </div>
-      
+
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Central Headline */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ y: 48, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.4 }}
         >
-          <motion.div 
+          <motion.div
             className="inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full mb-8"
             initial={{ scale: 0.75, rotate: 45 }}
             whileInView={{ scale: 1, rotate: 0 }}
@@ -147,20 +147,20 @@ export default function AuctionsSection() {
           >
             <Gavel className="w-10 h-10 text-primary" />
           </motion.div>
-          
+
           <p className="text-primary font-semibold text-lg mb-4 tracking-wide uppercase">
             Participare Activă
           </p>
-          
+
           <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
             Licitații
           </h2>
-          
+
           <div className="w-24 h-1 bg-primary mx-auto rounded-full"></div>
         </motion.div>
 
         {/* Main Description */}
-        <motion.div 
+        <motion.div
           className="max-w-4xl mx-auto text-center mb-16"
           initial={{ y: 32, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -168,20 +168,20 @@ export default function AuctionsSection() {
           transition={{ duration: 0.4, delay: 0.3 }}
         >
           <p className="text-2xl md:text-3xl text-gray-600 leading-relaxed font-light mb-8">
-            Licitațiile de la bal oferă o modalitate elegantă și interactivă de a contribui la fondul 
+            Licitațiile de la bal oferă o modalitate elegantă și interactivă de a contribui la fondul
             de premiere, cu obiecte de valoare donate de parteneri generosi.
           </p>
-          
+
           <div className="bg-white rounded-2xl p-6 shadow-lg border border-yellow-100">
             <p className="text-lg text-gray-700">
-              <span className="font-semibold text-yellow-600">Participarea la licitații</span> nu doar că sprijină cauza noastră, 
+              <span className="font-semibold text-yellow-600">Participarea la licitații</span> nu doar că sprijină cauza noastră,
               dar vă oferă și șansa de a obține piese unice și experiențe de neuitat.
             </p>
           </div>
         </motion.div>
 
         {/* Auction Catalogue */}
-        <motion.div 
+        <motion.div
           className="mt-16"
           initial={{ y: 48, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -190,7 +190,7 @@ export default function AuctionsSection() {
         >
           {/* Catalogue Header */}
           <div className="text-center mb-12">
-            <motion.h3 
+            <motion.h3
               className="text-2xl md:text-3xl font-bold text-gray-900 mb-4"
               initial={{ y: 32, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
@@ -199,17 +199,17 @@ export default function AuctionsSection() {
             >
               Catalogul Licitației 2025
             </motion.h3>
-            <motion.p 
+            <motion.p
               className="text-lg text-gray-600 max-w-2xl mx-auto mb-8"
               initial={{ y: 24, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              Descoperiți colecția excepțională de obiecte donate de parteneri generosi, 
+              Descoperiți colecția excepțională de obiecte donate de parteneri generosi,
               organizate în trei categorii distincte pentru seara voastră specială
             </motion.p>
-            <motion.div 
+            <motion.div
               className="w-32 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto rounded-full"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
@@ -219,7 +219,7 @@ export default function AuctionsSection() {
           </div>
 
           {/* Category Tags */}
-          <motion.div 
+          <motion.div
             className="flex flex-wrap justify-center gap-4 mb-12"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -230,11 +230,10 @@ export default function AuctionsSection() {
               <motion.button
                 key={index}
                 onClick={() => handleCategoryChange(index)}
-                className={`flex items-center gap-3 px-6 py-3 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 ${
-                  activeCategory === index
+                className={`flex items-center gap-3 px-6 py-3 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 ${activeCategory === index
                     ? `bg-gradient-to-r ${getColorClasses(category.color, 'bg')} text-white shadow-lg`
                     : 'bg-white hover:bg-gray-50 text-gray-600 hover:text-gray-900 shadow-md hover:shadow-lg border border-gray-200'
-                }`}
+                  }`}
                 initial={{ y: 32, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -262,7 +261,7 @@ export default function AuctionsSection() {
             {/* Items Grid */}
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
               {paginatedItems.map((item, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   className={`group bg-white rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transform transition-all duration-500 hover:-translate-y-2 overflow-hidden border ${getColorClasses(categories[activeCategory].color, 'border')}`}
                   initial={{ y: 32, opacity: 0 }}
@@ -288,7 +287,7 @@ export default function AuctionsSection() {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <motion.div 
+              <motion.div
                 className="flex justify-center items-center gap-4 mt-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -297,11 +296,10 @@ export default function AuctionsSection() {
                 <button
                   onClick={() => handlePageChange(Math.max(0, currentPage - 1))}
                   disabled={currentPage === 0}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all duration-300 ${
-                    currentPage === 0
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all duration-300 ${currentPage === 0
                       ? 'text-gray-400 cursor-not-allowed'
                       : `text-gray-600 hover:text-white hover:bg-gradient-to-r ${getColorClasses(categories[activeCategory].color, 'bg')} hover:shadow-lg`
-                  }`}
+                    }`}
                 >
                   <ChevronLeft className="w-4 h-4" />
                   <span className="hidden sm:inline">Anterior</span>
@@ -312,11 +310,10 @@ export default function AuctionsSection() {
                     <button
                       key={pageIndex}
                       onClick={() => handlePageChange(pageIndex)}
-                      className={`w-8 h-8 rounded-full font-medium transition-all duration-300 ${
-                        currentPage === pageIndex
+                      className={`w-8 h-8 rounded-full font-medium transition-all duration-300 ${currentPage === pageIndex
                           ? `bg-gradient-to-r ${getColorClasses(categories[activeCategory].color, 'bg')} text-white shadow-lg`
                           : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
-                      }`}
+                        }`}
                     >
                       {pageIndex + 1}
                     </button>
@@ -326,11 +323,10 @@ export default function AuctionsSection() {
                 <button
                   onClick={() => handlePageChange(Math.min(totalPages - 1, currentPage + 1))}
                   disabled={currentPage === totalPages - 1}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all duration-300 ${
-                    currentPage === totalPages - 1
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all duration-300 ${currentPage === totalPages - 1
                       ? 'text-gray-400 cursor-not-allowed'
                       : `text-gray-600 hover:text-white hover:bg-gradient-to-r ${getColorClasses(categories[activeCategory].color, 'bg')} hover:shadow-lg`
-                  }`}
+                    }`}
                 >
                   <span className="hidden sm:inline">Următor</span>
                   <ChevronRight className="w-4 h-4" />
@@ -340,7 +336,7 @@ export default function AuctionsSection() {
           </motion.div>
 
           {/* Call to Action */}
-          <motion.div 
+          <motion.div
             className="text-center bg-gradient-to-r from-yellow-100 via-orange-100 to-yellow-100 rounded-3xl p-8 md:p-12 border border-yellow-200"
             initial={{ y: 48, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -355,7 +351,7 @@ export default function AuctionsSection() {
                 Și Multe Alte Surprize
               </h4>
               <p className="text-lg text-gray-700 mb-6 max-w-2xl mx-auto">
-                Catalogul complet cu toate obiectele disponibile va fi prezentat în seara evenimentului. 
+                Catalogul complet cu toate obiectele disponibile va fi prezentat în seara evenimentului.
                 <span className="font-semibold text-yellow-700"> Fiecare licitație contribuie direct la fondul de premiere</span> al elevilor olimpici.
               </p>
               <div className="bg-white/70 backdrop-blur-sm rounded-full px-6 py-3 inline-flex items-center gap-2 shadow-md">
