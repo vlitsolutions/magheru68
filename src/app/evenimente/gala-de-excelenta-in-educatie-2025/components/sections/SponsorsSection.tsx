@@ -187,7 +187,7 @@ export default function SponsorsSection() {
           initial={{ y: 48, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.4, delay: 1.0 }}
+          transition={{ duration: 0.4, delay: 0.5 }}
         >
           <div className="text-center">
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
@@ -198,7 +198,13 @@ export default function SponsorsSection() {
             </p>
             
             {/* Sponsors Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            <motion.div 
+              className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6 }}
+            >
               {[
                 "Scandia Sibiu", "Diana", "Valoris", "Annabella", "Avicarvil",
                 "DoinaMed", "Nurvil", "VinuriShop", "PCPrint", "Paradis-Nobless",
@@ -206,30 +212,25 @@ export default function SponsorsSection() {
                 "Boromir", "Necci Restaurant", "Taverna D'Amicii", "Antares Gas", "Hotel Maria",
                 "A-Rosa Ski Resort"
               ].map((sponsor, index) => (
-                <motion.div 
+                <div 
                   key={index}
                   className="bg-white/70 backdrop-blur-sm rounded-xl p-4 md:p-6 h-20 md:h-24 flex items-center justify-center border border-white/50 group hover:bg-white/90 hover:shadow-lg transition-all duration-300"
-                  initial={{ y: 16, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  whileHover={{ scale: 1.05 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.3, delay: 1.15 + (index * 0.05) }}
                 >
                   <div className="text-center">
                     <span className="text-gray-600 font-semibold text-xs md:text-sm leading-tight group-hover:text-primary transition-colors">
                       {sponsor}
                     </span>
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </div>
+            </motion.div>
             
             <motion.div 
               className="mt-8 text-center"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ y: 32, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: 2.2 }}
+              transition={{ duration: 0.4, delay: 0.6 }}
             >
               <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-4 border border-white/40 inline-block">
                 <p className="text-primary font-semibold text-sm">
@@ -246,7 +247,7 @@ export default function SponsorsSection() {
           initial={{ y: 48, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.4, delay: 1.3 }}
+          transition={{ duration: 0.4, delay: 0.6 }}
         >
           <h3 className="text-2xl md:text-3xl font-bold mb-4">
             Devino Partenerul Nostru

@@ -262,16 +262,18 @@ export default function DonationsSection() {
               <h4 className="text-xl font-semibold text-gray-900 mb-4">Mediatizare și Recunoaștere</h4>
               
               {/* News Articles */}
-              <div className="space-y-4">
-                <motion.a 
+              <motion.div 
+                className="space-y-4"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6 }}
+              >
+                <a 
                   href="https://jurnalulolteniei.ro/2024/10/06/33-elevi-de-nota-10-au-primit-premii-de-excelenta-la-gala-educatiei-valcene/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-100 hover:shadow-lg hover:border-primary/30 transition-all duration-300"
-                  initial={{ x: 32, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.3, delay: 0.65 }}
                 >
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
                     <Newspaper className="w-6 h-6 text-blue-600 group-hover:text-primary" />
@@ -290,17 +292,13 @@ export default function DonationsSection() {
                     </div>
                   </div>
                   <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors" />
-                </motion.a>
+                </a>
 
-                <motion.a 
+                <a 
                   href="https://saptamana.net/articol/22587-gala-excelentei-in-educatie-moment-festiv-pentru-exponentii-valorilor-valcene"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-100 hover:shadow-lg hover:border-primary/30 transition-all duration-300"
-                  initial={{ x: 32, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.3, delay: 0.73 }}
                 >
                   <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
                     <Newspaper className="w-6 h-6 text-green-600 group-hover:text-primary" />
@@ -319,18 +317,14 @@ export default function DonationsSection() {
                     </div>
                   </div>
                   <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors" />
-                </motion.a>
+                </a>
 
                 {/* TVR Article */}
-                <motion.a 
+                <a 
                   href="https://tvr-craiova.ro/stiri/gala-excelentei-in-educatie-la-valcea/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-start gap-4 p-4 bg-gradient-to-br from-red-50 to-red-100 rounded-xl border border-red-200 hover:shadow-lg hover:border-primary/30 transition-all duration-300"
-                  initial={{ x: 32, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.3, delay: 0.81 }}
                 >
                   <div className="w-12 h-12 bg-red-200 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
                     <Globe className="w-6 h-6 text-red-600 group-hover:text-primary" />
@@ -354,18 +348,14 @@ export default function DonationsSection() {
                     </div>
                     <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors" />
                   </div>
-                </motion.a>
+                </a>
 
                 {/* Facebook Video */}
-                <motion.a 
+                <a 
                   href="https://www.facebook.com/adrian.pana.7/videos/valcea-gala-excelen%C8%9Bei-%C3%AEn-educa%C8%9Bie-edi%C8%9Bia-a-iii-a147-de-elevi-155-premii-%C3%AEn-tota/1300144141178113/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-start gap-4 p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl border border-blue-200 hover:shadow-lg hover:border-primary/30 transition-all duration-300"
-                  initial={{ x: 32, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.3, delay: 0.89 }}
                 >
                   <div className="w-12 h-12 bg-blue-200 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
                     <Facebook className="w-6 h-6 text-blue-600 group-hover:text-primary" />
@@ -389,8 +379,8 @@ export default function DonationsSection() {
                     </div>
                     <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors" />
                   </div>
-                </motion.a>
-              </div>
+                </a>
+              </motion.div>
 
               <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
                 <p className="text-sm text-blue-800 font-medium text-center">

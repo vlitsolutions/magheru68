@@ -1,14 +1,26 @@
+'use client'
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#29387f' }}>
       <main className="flex flex-col items-center justify-center min-h-screen px-4 py-8 md:py-0">
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-12 max-w-7xl mx-auto">
-          <div className="flex flex-col items-center text-center">
+        <motion.div 
+          className="flex flex-col lg:flex-row items-center justify-center gap-12 max-w-7xl mx-auto"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.div 
+            className="flex flex-col items-center text-center"
+            initial={{ y: 48, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <Image
               src="/logo_white.webp"
               alt="Logo"
@@ -24,15 +36,22 @@ export default function Home() {
             <p className="text-white/80 text-lg max-w-md">
               dedicată sprijinirii excelenței educaționale în comunitatea vâlceană
             </p>
-          </div>
+          </motion.div>
 
-          <div className="lg:ml-16">
+          <motion.div 
+            className="lg:ml-16"
+            initial={{ y: 48, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             <div className="w-full max-w-md bg-white/95 backdrop-blur-sm shadow-xl rounded-xl overflow-hidden">
               <Image
                 src="/hero-banner-event.webp"
                 alt="Gala de Excelența în Educație 2025"
                 width={400}
                 height={200}
+                priority
+                fetchPriority="high"
                 className="w-full h-48 object-cover"
               />
               <div className="px-8 py-6">
@@ -62,12 +81,17 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </main>
 
       {/* Footer */}
-      <footer className="text-white text-center py-6 px-4">
+      <motion.footer 
+        className="text-white text-center py-6 px-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, delay: 0.8 }}
+      >
         <p className="text-white/60 text-sm">
           © 2025 by{" "}
           <a
@@ -79,7 +103,7 @@ export default function Home() {
             VLIT Solutions
           </a>
         </p>
-      </footer>
+      </motion.footer>
     </div>
   );
 }
