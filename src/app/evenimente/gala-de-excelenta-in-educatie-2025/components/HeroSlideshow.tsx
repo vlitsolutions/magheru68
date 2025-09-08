@@ -1,151 +1,154 @@
 'use client'
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-// Primary hero image for fast LCP
+// Primary hero image for instant LCP
 const heroImage = { name: 'DSC_2575', alt: 'Momente festive de la Gala de Excelența în Educație' };
 
-// Additional slideshow images (loaded progressively)
+// Curated slideshow images (only best 3 for performance)
 const slideImages = [
   { name: 'DSC_2575', alt: 'Momente festive de la Gala de Excelența în Educație' },
   { name: 'DDD_6078', alt: 'Atmosfera elegantă a galei de caritate' },
-  { name: 'DDD_6167', alt: 'Invitații la evenimentul caritabil educațional' },
   { name: 'DSC_2805', alt: 'Momentele speciale de la gala de excelență' },
-  { name: 'IMG_0003', alt: 'Celebrarea excelenței în educație' },
-  { name: 'IMG_0024', alt: 'Comunitatea educațională la gala caritabilă' },
-  { name: 'IMG_0039', alt: 'Experiența memorabilă de la eveniment' },
-  { name: 'IMG_0041', alt: 'Participanții la gala de caritate educațională' },
-  { name: 'IMG_0109', alt: 'Atmosfera festivă a galei de excelență' },
-  { name: 'IMG_0163', alt: 'Momentele de celebrare a performanțelor' },
-  { name: 'IMG_0164', alt: 'Comunitatea unită pentru o cauză nobilă' },
-  { name: 'IMG_0200', alt: 'Experiența de neuitat de la gala caritabilă' }
+  { name: 'IMG_0163', alt: 'Momentele de celebrare a performanțelor' }
 ];
 
-// Function to get the appropriate image source based on device
-const getImageSrc = (imageName: string) => {
-  return `/gala-2024-optimized/${imageName}`;
-};
-
-// Generate blur data URL from actual blur image
-const getBlurDataURL = (imageName: string) => {
-  return `/gala-2024-optimized/${imageName}-blur.webp`;
-};
-
-// Get responsive image src based on screen size
-const getResponsiveImageSrc = (imageName: string) => {
-  if (typeof window === 'undefined') return `${getImageSrc(imageName)}-desktop.webp`;
-  
-  if (window.innerWidth <= 480) {
-    return `${getImageSrc(imageName)}-mobile.webp`;
-  } else if (window.innerWidth <= 1024) {
-    return `${getImageSrc(imageName)}-tablet.webp`;
-  } else {
-    return `${getImageSrc(imageName)}-desktop.webp`;
-  }
-};
+const getImageSrc = (imageName: string) => `/gala-2024-optimized/${imageName}`;
+const getBlurDataURL = (imageName: string) => `/gala-2024-optimized/${imageName}-blur.webp`;
 
 export default function HeroSlideshow() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [heroImageLoaded, setHeroImageLoaded] = useState(false);
-  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set([heroImage.name]));
-  const [slideshowActive, setSlideshowActive] = useState(false);
-  const [availableSlides, setAvailableSlides] = useState([heroImage]);
+  const [slideshowStarted, setSlideshowStarted] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Progressive image loading after hero image loads
+  // Use Intersection Observer to detect when hero is visible
   useEffect(() => {
-    if (!heroImageLoaded) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
 
-    const loadImagesProgressively = () => {
-      const remainingImages = slideImages.slice(1); // Skip DSC_2575 as it's already loaded
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Start slideshow after hero image loads and component is visible
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const startSlideshow = () => {
+      setSlideshowStarted(true);
       
-      // Start all image downloads immediately
-      remainingImages.forEach(slide => {
-        const img = document.createElement('img');
-        img.onload = () => {
-          setLoadedImages(prev => {
-            const updated = new Set([...prev, slide.name]);
-            return updated;
-          });
-
-          setAvailableSlides(prev => {
-            const newSlides = slideImages.filter(s => 
-              prev.some(p => p.name === s.name) || s.name === slide.name
-            );
-            return newSlides;
-          });
-
-          // Start slideshow once we have at least 3 images loaded
-          if (!slideshowActive && loadedImages.size + 1 >= 3) {
-            setSlideshowActive(true);
-          }
-        };
-        img.onerror = () => {
-          console.warn(`Failed to load image: ${slide.name}`);
-        };
-        img.src = getResponsiveImageSrc(slide.name);
-      });
+      intervalRef.current = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % slideImages.length);
+      }, 4000);
     };
 
-    loadImagesProgressively();
-  }, [heroImageLoaded, loadedImages.size, slideshowActive]);
+    // Delay slideshow start for better initial performance
+    const timer = setTimeout(startSlideshow, 1000);
 
-  // Auto-advance slides only when slideshow is active
+    return () => {
+      clearTimeout(timer);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isVisible]);
+
+  // Cleanup interval on unmount
   useEffect(() => {
-    if (!slideshowActive || availableSlides.length < 2) return;
-
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % availableSlides.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [slideshowActive, availableSlides.length]);
-
-  // Track when hero image loads
-  const handleHeroImageLoad = () => {
-    setHeroImageLoaded(true);
-  };
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
 
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden">
-      {availableSlides.map((slide, index) => (
-        <div
-          key={slide.name}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            index === currentSlide ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          <picture>
-            <source
-              media="(max-width: 480px)"
-              srcSet={`${getImageSrc(slide.name)}-mobile.webp`}
-            />
-            <source
-              media="(max-width: 1024px)"
-              srcSet={`${getImageSrc(slide.name)}-tablet.webp`}
-            />
-            <source
-              media="(min-width: 1025px)"
-              srcSet={`${getImageSrc(slide.name)}-desktop.webp`}
-            />
-            <Image
-              src={`${getImageSrc(slide.name)}-desktop.webp`}
-              alt={slide.alt}
-              fill
-              priority={slide.name === heroImage.name}
-              fetchPriority={slide.name === heroImage.name ? "high" : "low"}
-              sizes="(max-width: 480px) 100vw, (max-width: 1024px) 100vw, 100vw"
-              className="object-cover object-center"
-              placeholder="blur"
-              blurDataURL={getBlurDataURL(slide.name)}
-              onLoad={slide.name === heroImage.name ? handleHeroImageLoad : undefined}
-              style={{
-                objectPosition: 'center center'
-              }}
-            />
-          </picture>
-        </div>
-      ))}
+    <div ref={containerRef} className="absolute inset-0 w-full h-full overflow-hidden">
+      {/* Static hero image - always visible for fast LCP */}
+      <div className="absolute inset-0">
+        <picture>
+          <source
+            media="(max-width: 480px)"
+            srcSet={`${getImageSrc(heroImage.name)}-mobile.webp`}
+          />
+          <source
+            media="(max-width: 1024px)"
+            srcSet={`${getImageSrc(heroImage.name)}-tablet.webp`}
+          />
+          <source
+            media="(min-width: 1025px)"
+            srcSet={`${getImageSrc(heroImage.name)}-desktop.webp`}
+          />
+          <Image
+            src={`${getImageSrc(heroImage.name)}-desktop.webp`}
+            alt={heroImage.alt}
+            fill
+            priority
+            fetchPriority="high"
+            sizes="100vw"
+            className="object-cover object-center"
+            placeholder="blur"
+            blurDataURL={getBlurDataURL(heroImage.name)}
+          />
+        </picture>
+      </div>
+
+      {/* Slideshow images - only render when slideshow starts */}
+      {slideshowStarted && slideImages.slice(1).map((slide, index) => {
+        const slideIndex = index + 1; // Offset by 1 since we skip hero image
+        const isActive = currentSlide === slideIndex;
+        
+        return (
+          <div
+            key={slide.name}
+            className={`absolute inset-0 transition-transform duration-1000 ease-in-out will-change-transform ${
+              isActive ? 'translate-x-0' : 'translate-x-full'
+            }`}
+            style={{
+              transform: isActive ? 'translateX(0)' : 'translateX(100%)',
+            }}
+          >
+            <picture>
+              <source
+                media="(max-width: 480px)"
+                srcSet={`${getImageSrc(slide.name)}-mobile.webp`}
+              />
+              <source
+                media="(max-width: 1024px)"
+                srcSet={`${getImageSrc(slide.name)}-tablet.webp`}
+              />
+              <source
+                media="(min-width: 1025px)"
+                srcSet={`${getImageSrc(slide.name)}-desktop.webp`}
+              />
+              <Image
+                src={`${getImageSrc(slide.name)}-desktop.webp`}
+                alt={slide.alt}
+                fill
+                loading="lazy"
+                fetchPriority="low"
+                sizes="100vw"
+                className="object-cover object-center"
+                placeholder="blur"
+                blurDataURL={getBlurDataURL(slide.name)}
+              />
+            </picture>
+          </div>
+        );
+      })}
     </div>
   );
 }

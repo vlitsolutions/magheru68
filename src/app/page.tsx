@@ -4,8 +4,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 export default function Home() {
+  // Preload the event page for instant navigation
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.href = '/evenimente/gala-de-excelenta-in-educatie-2025';
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#29387f' }}>
       <main className="flex flex-col items-center justify-center min-h-screen px-4 py-8 md:py-0">
