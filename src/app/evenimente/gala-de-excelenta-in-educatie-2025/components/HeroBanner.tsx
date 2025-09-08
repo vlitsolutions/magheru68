@@ -4,8 +4,15 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import HeroSlideshow from "./HeroSlideshow";
 
+interface HeroBannerProps {
+  sections: {
+    id: string;
+    title: string;
+  }[];
+}
 
-export default function HeroBanner() {
+export default function HeroBanner({ sections }: HeroBannerProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
