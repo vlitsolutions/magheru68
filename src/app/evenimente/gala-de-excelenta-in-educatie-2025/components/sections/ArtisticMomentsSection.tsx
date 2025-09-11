@@ -12,8 +12,8 @@ const specialGuests = [
 
   {
     id: 1,
-    name: "Somelier Dan Sendrea",
-    occupation: "Somelier, negustor de vinuri bune",
+    name: "Dan Șendrea",
+    occupation: "Somelier",
     image: "/invitati/dan_sendrea.webp",
     description: "Somelier, negustor de vinuri bune, ce va face asocierea mancarii cu vinurile italienesti de la vinuri.shop. \"Asocierea vinului cu mancarea este una dintre bucuriile vietii\""
   },
