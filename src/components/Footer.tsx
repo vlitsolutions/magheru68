@@ -11,9 +11,9 @@ export default function Footer() {
           {/* Left Column - Logo and Organization */}
           <div className="text-center md:text-left">
             <div className="flex justify-center md:justify-start mb-6">
-              <Image 
-                src="/logo_white.webp" 
-                alt="Asociația General Magheru 68" 
+              <Image
+                src="/logo_white.webp"
+                alt="Asociația General Magheru 68"
                 width={80}
                 height={80}
                 className="h-20 w-auto"
@@ -33,8 +33,8 @@ export default function Footer() {
             <div className="space-y-4">
               <div>
                 <p className="text-gray-400 mb-2">Email:</p>
-                <a 
-                  href="mailto:info@magheru68.ro" 
+                <a
+                  href="mailto:info@magheru68.ro"
                   className="text-lg hover:text-blue-400 transition-colors"
                 >
                   info@magheru68.ro
@@ -45,10 +45,10 @@ export default function Footer() {
                 <p className="text-lg mb-2">Vasile Căprescu</p>
                 <div className="flex items-center gap-3 justify-center md:justify-start">
                   <Phone className="w-5 h-5 text-gray-400" />
-                  <span className="text-lg">073539350</span>
-                  <a 
-                    href="https://wa.me/40733539350" 
-                    target="_blank" 
+                  <span className="text-lg">0730539350</span>
+                  <a
+                    href="https://wa.me/0730539350"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded text-sm font-medium transition-colors"
                   >
@@ -70,9 +70,9 @@ export default function Footer() {
               <p className="mb-1">Gala de Excelența în Educație - Ediția a IV-a</p>
               <p className="text-sm">
                 © 2025 by{" "}
-                <a 
-                  href="https://vlit-solutions.ro" 
-                  target="_blank" 
+                <a
+                  href="https://vlit-solutions.ro"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-300 hover:text-white transition-colors underline"
                 >
