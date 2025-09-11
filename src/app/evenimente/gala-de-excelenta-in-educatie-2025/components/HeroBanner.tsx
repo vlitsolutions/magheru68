@@ -45,7 +45,7 @@ export default function HeroBanner({ sections }: HeroBannerProps) {
 
           <h1 className={`text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 leading-tight text-white transform transition-all duration-1000 delay-300 text-center ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
             }`}>
-            <span className="block sm:inline">Gala de Excelența</span>
+            <span className="block sm:inline">Gala de Excelență</span>
             <span className="block sm:inline"> </span>
             <span className="block sm:inline">în Educație 2025</span>
           </h1>

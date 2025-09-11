@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 
 // Primary hero image for instant LCP
-const heroImage = { name: 'DSC_2575', alt: 'Momente festive de la Gala de Excelența în Educație' };
+const heroImage = { name: 'DSC_2575', alt: 'Momente festive de la Gala de Excelență în Educație' };
 
 // Curated slideshow images (only best 3 for performance)
 const slideImages = [
-  { name: 'DSC_2575', alt: 'Momente festive de la Gala de Excelența în Educație' },
+  { name: 'DSC_2575', alt: 'Momente festive de la Gala de Excelență în Educație' },
   { name: 'DDD_6078', alt: 'Atmosfera elegantă a galei de caritate' },
   { name: 'DSC_2805', alt: 'Momentele speciale de la gala de excelență' },
   { name: 'IMG_0163', alt: 'Momentele de celebrare a performanțelor' }

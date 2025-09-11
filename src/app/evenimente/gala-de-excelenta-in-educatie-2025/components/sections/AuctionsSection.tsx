@@ -19,7 +19,7 @@ export default function AuctionsSection() {
         { title: "Tricou Naționala României", subtitle: "Semnat de golgheterul echipei naționale", icon: "⚽" },
         { title: "Set Universitatea Craiova", subtitle: "Tricoul oficial + mingea echipei", icon: "⚽" },
         { title: "Tricou FC Dinamo", subtitle: "Echipa curentă, ediție limitată", icon: "⚽" },
-        { title: "Mănuși Florian Pruna", subtitle: "Portarul legendar al echipe Dinamo", icon: "🧤" },
+        { title: "Mănuși Florian Prunea", subtitle: "Portarul legendar al echipe Dinamo", icon: "🧤" },
         { title: "Tricou FCSB", subtitle: "Echipa curentă, ediție limitată", icon: "⚽" },
         { title: "Echipament Alina Vuc", subtitle: "Piesă autentică din competițiile internaționale", icon: "🏃‍♀️" },
         { title: "Minge Națională Semnată", subtitle: "Oficială, cu autografele lotului României", icon: "⚽" },
