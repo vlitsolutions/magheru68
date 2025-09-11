@@ -19,7 +19,7 @@ export default function AuctionsSection() {
         { title: "Tricou Naționala României", subtitle: "Semnat de golgheterul echipei naționale", icon: "⚽" },
         { title: "Set Universitatea Craiova", subtitle: "Tricoul oficial + mingea echipei", icon: "⚽" },
         { title: "Tricou FC Dinamo", subtitle: "Echipa curentă, ediție limitată", icon: "⚽" },
-        { title: "Mănuși Florian Prunea", subtitle: "Portarul legendar al echipe Dinamo", icon: "🧤" },
+        { title: "Mănuși Florin Prunea", subtitle: "Portarul legendar al echipe Dinamo", icon: "🧤" },
         { title: "Tricou FCSB", subtitle: "Echipa curentă, ediție limitată", icon: "⚽" },
         { title: "Echipament Alina Vuc", subtitle: "Piesă autentică din competițiile internaționale", icon: "🏃‍♀️" },
         { title: "Minge Națională Semnată", subtitle: "Oficială, cu autografele lotului României", icon: "⚽" },
@@ -232,8 +232,8 @@ export default function AuctionsSection() {
                 key={index}
                 onClick={() => handleCategoryChange(index)}
                 className={`flex items-center gap-3 px-6 py-3 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 ${activeCategory === index
-                    ? `bg-gradient-to-r ${getColorClasses(category.color, 'bg')} text-white shadow-lg`
-                    : 'bg-white hover:bg-gray-50 text-gray-600 hover:text-gray-900 shadow-md hover:shadow-lg border border-gray-200'
+                  ? `bg-gradient-to-r ${getColorClasses(category.color, 'bg')} text-white shadow-lg`
+                  : 'bg-white hover:bg-gray-50 text-gray-600 hover:text-gray-900 shadow-md hover:shadow-lg border border-gray-200'
                   }`}
                 initial={{ y: 32, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -298,8 +298,8 @@ export default function AuctionsSection() {
                   onClick={() => handlePageChange(Math.max(0, currentPage - 1))}
                   disabled={currentPage === 0}
                   className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all duration-300 ${currentPage === 0
-                      ? 'text-gray-400 cursor-not-allowed'
-                      : `text-gray-600 hover:text-white hover:bg-gradient-to-r ${getColorClasses(categories[activeCategory].color, 'bg')} hover:shadow-lg`
+                    ? 'text-gray-400 cursor-not-allowed'
+                    : `text-gray-600 hover:text-white hover:bg-gradient-to-r ${getColorClasses(categories[activeCategory].color, 'bg')} hover:shadow-lg`
                     }`}
                 >
                   <ChevronLeft className="w-4 h-4" />
@@ -312,8 +312,8 @@ export default function AuctionsSection() {
                       key={pageIndex}
                       onClick={() => handlePageChange(pageIndex)}
                       className={`w-8 h-8 rounded-full font-medium transition-all duration-300 ${currentPage === pageIndex
-                          ? `bg-gradient-to-r ${getColorClasses(categories[activeCategory].color, 'bg')} text-white shadow-lg`
-                          : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                        ? `bg-gradient-to-r ${getColorClasses(categories[activeCategory].color, 'bg')} text-white shadow-lg`
+                        : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
                         }`}
                     >
                       {pageIndex + 1}
@@ -325,8 +325,8 @@ export default function AuctionsSection() {
                   onClick={() => handlePageChange(Math.min(totalPages - 1, currentPage + 1))}
                   disabled={currentPage === totalPages - 1}
                   className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all duration-300 ${currentPage === totalPages - 1
-                      ? 'text-gray-400 cursor-not-allowed'
-                      : `text-gray-600 hover:text-white hover:bg-gradient-to-r ${getColorClasses(categories[activeCategory].color, 'bg')} hover:shadow-lg`
+                    ? 'text-gray-400 cursor-not-allowed'
+                    : `text-gray-600 hover:text-white hover:bg-gradient-to-r ${getColorClasses(categories[activeCategory].color, 'bg')} hover:shadow-lg`
                     }`}
                 >
                   <span className="hidden sm:inline">Următor</span>

@@ -74,7 +74,7 @@ export default function Home() {
                   </h2>
                   <div className="mb-6">
                     <h3 className="text-xl font-semibold text-primary mb-2">
-                      Gala de Excelența în Educație 2025
+                      Gala de Excelență în Educație 2025
                     </h3>
                     <p className="text-lg text-gray-600 mb-1">
                       Ediția a IV-a
