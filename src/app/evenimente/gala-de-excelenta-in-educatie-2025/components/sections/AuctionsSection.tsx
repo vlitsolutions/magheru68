@@ -48,7 +48,8 @@ export default function AuctionsSection() {
       icon: "✨",
       color: "yellow",
       items: [
-        { title: "Fosilă Amonit Secționată", subtitle: "Paralegoceras sundaicum - cochilie fosilizată rară, specimen paleontologic autentic", icon: "🐚" }
+        { title: "Fosilă Amonit Secționată", subtitle: "Paralegoceras sundaicum - cochilie fosilizată rară, specimen paleontologic autentic", icon: "🐚" },
+        { title: "Colier din Aur Alb de 18k", subtitle: "Cu pandantiv incrustat cu Tanzanit de 0.8ct și Diamante de 0.10ct de la partenerul Stil Diamonds", icon: "💎" }
       ]
     }
   ];
