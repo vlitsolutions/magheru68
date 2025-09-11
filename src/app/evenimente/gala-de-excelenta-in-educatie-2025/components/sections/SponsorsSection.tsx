@@ -3,6 +3,8 @@
 import { Users} from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import { sponsors } from "@/data/sponsors";
 
 export default function SponsorsSection() {
   const [scrollY, setScrollY] = useState(0);
@@ -199,45 +201,51 @@ export default function SponsorsSection() {
             
             {/* Sponsors Grid */}
             <motion.div 
-              className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6"
+              className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6 }}
             >
-              {[
-                "Scandia Sibiu", "Diana", "Valoris", "Annabella", "Avicarvil",
-                "DoinaMed", "Nurvil", "VinuriShop", "PCPrint", "Paradis-Nobless",
-                "Posada Center", "Stil Diamonds", "Arbusto Coffee", "Hotel Ramada", "Dumbrafox",
-                "Boromir", "Necci Restaurant", "Taverna D'Amicii", "Antares Gas", "Hotel Maria",
-                "A-Rosa Ski Resort"
-              ].map((sponsor, index) => (
-                <div 
-                  key={index}
-                  className="bg-white/70 backdrop-blur-sm rounded-xl p-4 md:p-6 h-20 md:h-24 flex items-center justify-center border border-white/50 group hover:bg-white/90 hover:shadow-lg transition-all duration-300"
-                >
-                  <div className="text-center">
-                    <span className="text-gray-600 font-semibold text-xs md:text-sm leading-tight group-hover:text-primary transition-colors">
-                      {sponsor}
-                    </span>
+              {sponsors.map((sponsor, index) => {
+                const squaredLogo = sponsor.images.find(img => img.type === 'squared');
+                const isWhiteLogo = squaredLogo?.filename.includes('_white');
+                const hasLogo = squaredLogo && squaredLogo.filename;
+                
+                return (
+                  <div 
+                    key={index}
+                    className="bg-white border-gray-200 hover:bg-white rounded-xl px-2 py-4 md:px-3 md:py-5 h-48 md:h-52 flex flex-col items-center justify-center border group hover:shadow-lg transition-all duration-300"
+                  >
+                    <div className="w-full h-24 md:h-28 flex items-center justify-center mb-3">
+                      {hasLogo ? (
+                        <div className={`w-24 h-24 md:w-28 md:h-28 flex items-center justify-center rounded-lg ${
+                          isWhiteLogo ? 'bg-black border border-black' : 'bg-white'
+                        }`}>
+                          <Image 
+                            src={`/sponsori/${squaredLogo.filename}`}
+                            alt={sponsor.name}
+                            width={112}
+                            height={112}
+                            className="w-full h-full object-contain p-1"
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
+                          <span className="text-gray-500 text-xs">Logo</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="text-center px-1">
+                      <span className="text-gray-600 group-hover:text-primary font-semibold text-xs leading-tight transition-colors">
+                        {sponsor.name}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </motion.div>
             
-            <motion.div 
-              className="mt-8 text-center"
-              initial={{ y: 32, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.4, delay: 0.6 }}
-            >
-              <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-4 border border-white/40 inline-block">
-                <p className="text-primary font-semibold text-sm">
-                  📍 Logouri disponibile în curând
-                </p>
-              </div>
-            </motion.div>
           </div>
         </motion.div>
 
