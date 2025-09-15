@@ -51,6 +51,13 @@ const specialGuests = [
     occupation: "Luptătoare Profesionistă",
     image: "/invitati/alina_vuc.webp",
     description: "Dublă medaliată cu argint la Campionatele Mondiale de Lupte și cvadruplu medaliată la Campionatele Europene. Olimpică la Tokyo 2020 și Rio 2016, una dintre cele mai de succes luptătoare din istoria României."
+  },
+  {
+    id: 7,
+    name: "Valentin Albeșteanu",
+    occupation: "Violonist și Dirijor",
+    image: "/invitati/valentin_albeseanu.png",
+    description: "Renumit violonist și dirijor, fiul cunoscutului maestru Ion Albeșteanu. Absolvent al Universității Naționale de Muzică București, colaborator al Orchestrei de Cameră a Radiodifuziunii și președinte de onoare al Asociației ProCultArt, dedicat salvgardării muzicii ușoare și de café-concert."
   }
 ];
 
