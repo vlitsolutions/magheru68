@@ -63,7 +63,8 @@ COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder --chown=nextjs:nodejs /app/scripts ./scripts
 
-USER nextjs
+# Set permissions for nextjs user to run the app, but keep root for admin tasks
+RUN chmod +x /app/server.js
 
 # Expose port 3000 for Next.js
 EXPOSE 3000
@@ -71,6 +72,7 @@ EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
+# Run as root to allow npm installs and admin operations
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
 CMD ["node", "server.js"]
