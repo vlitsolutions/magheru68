@@ -16,11 +16,19 @@ const dancingScript = Dancing_Script({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://magheru68.ro'),
-  title: "Asociația General Magheru 68 - Evenimente și Inițiative Sociale",
+  title: {
+    default: "Asociația General Magheru 68 - Evenimente și Inițiative Sociale",
+    template: "%s | Asociația General Magheru 68"
+  },
   description: "Asociația General Magheru 68 dedicată îmbunătățirii comunității prin evenimente și inițiative sociale. Alătură-te evenimentelor noastre și contribuie la o cauză nobilă.",
-  keywords: ["caritate", "evenimente", "olimpiada de fapte bune", "donații", "voluntariat", "comunitate", "România", "Asociația General Magheru 68"],
+  keywords: ["caritate", "evenimente", "olimpiada de fapte bune", "donații", "voluntariat", "comunitate", "România", "Asociația General Magheru 68", "Râmnicu Vâlcea", "Gala de Excelența în Educație"],
   authors: [{ name: "Asociația General Magheru 68" }],
+  publisher: "Asociația General Magheru 68",
+  creator: "Asociația General Magheru 68",
   robots: "index, follow",
+  applicationName: "Asociația General Magheru 68",
+  category: "Non-profit Organization",
+  classification: "Charity",
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
@@ -34,13 +42,14 @@ export const metadata: Metadata = {
     description: "Asociația General Magheru 68 dedicată îmbunătățirii comunității prin evenimente și inițiative sociale.",
     type: "website",
     locale: "ro_RO",
+    url: "https://magheru68.ro",
     siteName: "Asociația General Magheru 68",
     images: [
       {
-        url: "/asociatia_magheru_68.webp",
-        width: 650,
-        height: 433,
-        alt: "Asociația General Magheru 68",
+        url: "/logo_black.webp",
+        width: 300,
+        height: 300,
+        alt: "Asociația General Magheru 68 - Logo oficial al asociației",
         type: "image/webp",
       },
     ],
@@ -49,8 +58,13 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Asociația General Magheru 68 - Evenimente și Inițiative Sociale",
     description: "Asociația General Magheru 68 dedicată îmbunătățirii comunității prin evenimente și inițiative sociale.",
-    images: ["/asociatia_magheru_68.webp"],
+    images: ["/logo_black.webp"],
+    creator: "@magheru68",
+    site: "@magheru68",
   },
+  alternates: {
+    canonical: "https://magheru68.ro",
+  }
 };
 
 export default function RootLayout({

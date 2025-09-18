@@ -103,12 +103,14 @@ export default function RaffleSection() {
               {/* Image Section */}
               <div className="md:w-1/2 relative">
                 <div className="aspect-[4/3] md:aspect-auto md:h-full relative overflow-hidden">
-                  <Image 
-                    src="/venetia.webp" 
+                  <Image
+                    src="/2025/venice.webp"
                     alt="Venetia - Peisaj romantic cu gondole și canale"
-                    width={400}
-                    height={300}
-                    className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    quality={100}
+                    priority
+                    className="object-cover transform group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-black/20"></div>
                 </div>
@@ -117,8 +119,13 @@ export default function RaffleSection() {
               {/* Content Section */}
               <div className="md:w-1/2 p-8 md:p-12">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
-                    <span className="text-2xl">🇮🇹</span>
+                  <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center border border-gray-200 overflow-hidden">
+                    {/* Italian Flag */}
+                    <div className="w-8 h-6 rounded-sm overflow-hidden shadow-sm flex">
+                      <div className="w-1/3 bg-green-600"></div>
+                      <div className="w-1/3 bg-white"></div>
+                      <div className="w-1/3 bg-red-600"></div>
+                    </div>
                   </div>
                   <div>
                     <p className="text-primary font-semibold text-sm uppercase tracking-wide">Experiența de vis</p>
@@ -167,6 +174,177 @@ export default function RaffleSection() {
               </div>
             </div>
           </motion.div>
+        </div>
+
+        {/* Secondary Prizes */}
+        <div className="mb-16">
+          <motion.h3
+            className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-4"
+            initial={{ y: 32, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
+            Premii Suplimentare
+          </motion.h3>
+
+          <motion.p
+            className="text-lg text-gray-600 text-center mb-12 max-w-3xl mx-auto"
+            initial={{ y: 24, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Experiențe de neuitat în România, de la aventurile montane la relaxarea în natură
+          </motion.p>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* Arosa Ski Resort Prize */}
+            <motion.div
+              className="bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transform transition-all duration-700 hover:scale-[1.02] border border-blue-100"
+              initial={{ x: -32, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              {/* Image Section */}
+              <div className="relative h-64 overflow-hidden">
+                <Image
+                  src="/2025/arosa_ski_resort.webp"
+                  alt="Arosa Ski Resort - Peisaj montan cu zăpadă și pârtii de ski"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={100}
+                  className="object-cover transform group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+
+                {/* Ski Icon Badge */}
+                <div className="absolute top-4 left-4">
+                  <div className="w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/50">
+                    <span className="text-2xl">🎿</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Content Section */}
+              <div className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="text-blue-600 font-semibold text-sm uppercase tracking-wide">Aventură montană</span>
+                  <div className="w-12 h-0.5 bg-blue-400"></div>
+                </div>
+
+                <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
+                  A-ROSA SKI RESORT - Obârșia Lotrului
+                </h4>
+
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  <span className="font-medium text-blue-600">Două nopți magice</span> în inima Carpaților Meridionali,
+                  la doar 5 minute de pârtiile de ski Transalpina-Vidra.
+                </p>
+
+                <div className="space-y-3 mb-4">
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-sm text-gray-600"><span className="font-medium">Cazare 2 nopți</span> în cameră confortabilă cu încălzire și TV</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-sm text-gray-600"><span className="font-medium">Acces la pârtiile Transalpina</span> - 3km lungime, altitudine 1320-1974m</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-sm text-gray-600"><span className="font-medium">Mic dejun inclus</span> cu specialități locale și produse proaspete</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-sm text-gray-600"><span className="font-medium">WiFi gratuit</span> și parcare privată</p>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/50 rounded-xl p-3">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-lg">🏔️</span>
+                    <p className="font-semibold text-blue-800 text-sm">Experiență Premium</p>
+                  </div>
+                  <p className="text-blue-700 text-xs">Una dintre cele mai înalte stațiuni de ski din România cu priveliști spectaculoase</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Pensiunea Ghiocelul Prize */}
+            <motion.div
+              className="bg-gradient-to-br from-green-50 via-white to-emerald-100 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transform transition-all duration-700 hover:scale-[1.02] border border-green-100"
+              initial={{ x: 32, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              {/* Image Section */}
+              <div className="relative h-64 overflow-hidden">
+                <Image
+                  src="/2025/pensiunea_ghiocelul_echitatie.webp"
+                  alt="Pensiunea Ghiocelul - Echitație și plimbări călare în natură"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={100}
+                  className="object-cover transform group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+
+                {/* Horse Icon Badge */}
+                <div className="absolute top-4 left-4">
+                  <div className="w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/50">
+                    <span className="text-2xl">🐎</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Content Section */}
+              <div className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="text-green-600 font-semibold text-sm uppercase tracking-wide">Experiență rurală</span>
+                  <div className="w-12 h-0.5 bg-green-400"></div>
+                </div>
+
+                <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
+                  Pensiunea Ghiocelul - Avrig
+                </h4>
+
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  <span className="font-medium text-green-600">Două nopți de relaxare</span> în mijlocul naturii,
+                  cu experiențe autentice de echitație și plimbări romantice.
+                </p>
+
+                <div className="space-y-3 mb-4">
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-sm text-gray-600"><span className="font-medium">Cazare 2 nopți</span> în cameră tradițională cu vedere la munte</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-sm text-gray-600"><span className="font-medium">Ședințe de echitație</span> cu instructori experimentați</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-sm text-gray-600"><span className="font-medium">Plimbări călare</span> prin pădurile și câmpiile din jur</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-sm text-gray-600"><span className="font-medium">Plimbări cu trăsura</span> pentru o experiență romantică</p>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200/50 rounded-xl p-3">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-lg">🌿</span>
+                    <p className="font-semibold text-green-800 text-sm">Conexiune cu Natura</p>
+                  </div>
+                  <p className="text-green-700 text-xs">Experiență autentică rurală cu activități ekestre în cadrul pitoresc al Avrigului</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
 
         {/* Additional Surprises */}
