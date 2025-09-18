@@ -13,3 +13,9 @@ services:
     restart: unless-stopped
     ports:
       - "6868:3000"
+    volumes:
+      - analytics_data:/app/data
+
+volumes:
+  analytics_data:
+    driver: local
