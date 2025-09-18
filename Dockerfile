@@ -5,6 +5,8 @@ FROM node:18-alpine AS base
 FROM base AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
+# Install pg globally for database initialization
+RUN npm install -g pg
 WORKDIR /app
 
 # Copy package.json and package-lock.json (if available)
@@ -38,6 +40,9 @@ WORKDIR /app
 
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
+
+# Install pg globally for runtime database operations
+RUN npm install -g pg
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs

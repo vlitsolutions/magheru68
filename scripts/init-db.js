@@ -35,7 +35,7 @@ async function ensureDatabase() {
     await client.end();
   } catch (error) {
     console.error('Error ensuring database exists:', error.message);
-    // Don't fail the build if database creation fails
+    // Don't fail the process if database creation fails
     console.log('Continuing without database creation...');
   }
 }
