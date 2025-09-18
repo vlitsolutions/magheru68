@@ -3,7 +3,7 @@ import { getRedirectStats } from '@/lib/analytics';
 
 export async function GET() {
   try {
-    const stats = getRedirectStats();
+    const stats = await getRedirectStats();
     return NextResponse.json(stats);
   } catch (error) {
     console.error('Error fetching stats:', error);

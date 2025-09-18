@@ -1,25 +1,25 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
 interface RedirectStat {
   page: string;
   count: number;
-  lastAccess: string;
+  lastAccess: Date;
 }
 
 interface RedirectAnalytics {
   id: number;
   page: string;
-  timestamp: string;
-  user_agent?: string;
-  ip_address?: string;
+  timestamp: Date;
+  userAgent?: string | null;
+  ipAddress?: string | null;
 }
 
 const ADMIN_USER = 'admin';
-const ADMIN_PASS = 'magheru68admin';
+const ADMIN_PASS = 'boaz359boaz359';
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -52,17 +52,37 @@ export default function AdminPage() {
       ]);
 
       if (statsRes.ok) {
-        const statsData = await statsRes.json();
-        setStats(statsData);
+        const statsData = await statsRes.json() as Array<{
+          page: string;
+          count: number;
+          lastAccess: string;
+        }>;
+        // Convert string dates back to Date objects
+        const statsWithDates = statsData.map((stat) => ({
+          ...stat,
+          lastAccess: new Date(stat.lastAccess)
+        }));
+        setStats(statsWithDates);
       }
 
       if (recentRes.ok) {
-        const recentData = await recentRes.json();
-        setRecentAccesses(recentData);
+        const recentData = await recentRes.json() as Array<{
+          id: number;
+          page: string;
+          timestamp: string;
+          userAgent?: string | null;
+          ipAddress?: string | null;
+        }>;
+        // Convert string dates back to Date objects
+        const recentWithDates = recentData.map((access) => ({
+          ...access,
+          timestamp: new Date(access.timestamp)
+        }));
+        setRecentAccesses(recentWithDates);
       }
 
       if (totalRes.ok) {
-        const totalData = await totalRes.json();
+        const totalData = await totalRes.json() as { total: number };
         setTotalCount(totalData.total);
       }
     } catch (err) {
@@ -91,8 +111,8 @@ export default function AdminPage() {
     }
   };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleString('ro-RO');
+  const formatDate = (date: Date) => {
+    return date.toLocaleString('ro-RO');
   };
 
   if (!isAuthenticated) {
@@ -224,7 +244,7 @@ export default function AdminPage() {
                     <tr key={access.id} className="border-b">
                       <td className="py-2 font-mono text-sm">{access.page}</td>
                       <td className="py-2 text-gray-600">{formatDate(access.timestamp)}</td>
-                      <td className="py-2 font-mono text-sm">{access.ip_address || 'N/A'}</td>
+                      <td className="py-2 font-mono text-sm">{access.ipAddress || 'N/A'}</td>
                     </tr>
                   ))}
                 </tbody>

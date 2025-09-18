@@ -47,7 +47,7 @@ export default async function DonatePage() {
 
   // Track the redirect access
   try {
-    trackRedirect('/doneaza', userAgent, ipAddress);
+    await trackRedirect('/doneaza', userAgent, ipAddress);
   } catch (error) {
     console.error('Failed to track redirect:', error);
   }

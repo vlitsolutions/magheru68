@@ -3,7 +3,7 @@ import { getRecentRedirects } from '@/lib/analytics';
 
 export async function GET() {
   try {
-    const recentAccesses = getRecentRedirects(50);
+    const recentAccesses = await getRecentRedirects(50);
     return NextResponse.json(recentAccesses);
   } catch (error) {
     console.error('Error fetching recent accesses:', error);
